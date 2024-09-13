@@ -542,45 +542,7 @@ public class Constants {
 		}
 	}
 
-	/**
-	 * For standard deviations:
-	 * Lower = trust more, higher = trust less
-	 */
-	public static final class PoseEstimatorConstants {
-		public record CameraConfig(Pose3d offset, String config) {}
-		;
-
-		public static final Matrix<N2, N1> kStateStdDevs = VecBuilder.fill(Math.pow(0.2, 1), Math.pow(0.2, 1));
-		public static final Matrix<N2, N1> kLocalMeasurementStdDevs =
-				VecBuilder.fill(Math.pow(0.01, 1), Math.pow(0.01, 1));
-
-		public static final Map<String, CameraConfig> cameras = Map.ofEntries(
-				Map.entry(
-						"right",
-						new CameraConfig(
-								new Pose3d(
-										Units.inchesToMeters(3.071),
-										Units.inchesToMeters(-6.81),
-										Units.inchesToMeters(24.604),
-										new Rotation3d(
-												Units.degreesToRadians(0),
-												Units.degreesToRadians(-18),
-												Units.degreesToRadians(27))),
-								"{\"camera_matrix\":[[910.3756558875847,0,809.2765926238984],[0,909.8129438903156,644.2713243574459],[0,0,1]],\"distortion_coefficients\":[0.06236712235474046,-0.062294270427656145,0.004664145480488657,-0.0006911909097633055,-0.00762026244976393],\"tag_size\":0.163,\"camera_settings\":{\"width\":1600,\"height\":1200,\"fps\":50}}")),
-				Map.entry(
-						"left",
-						new CameraConfig(
-								new Pose3d(
-										Units.inchesToMeters(3.071),
-										Units.inchesToMeters(6.81),
-										Units.inchesToMeters(24.604),
-										new Rotation3d(
-												Units.degreesToRadians(0),
-												Units.degreesToRadians(-18),
-												Units.degreesToRadians(-27))),
-								"{\"camera_matrix\":[[910.3756558875847,0,809.2765926238984],[0,909.8129438903156,644.2713243574459],[0,0,1]],\"distortion_coefficients\":[0.06236712235474046,-0.062294270427656145,0.004664145480488657,-0.0006911909097633055,-0.00762026244976393],\"tag_size\":0.163,\"camera_settings\":{\"width\":1600,\"height\":1200,\"fps\":50}}")));
-	}
-
+	/*
 	public static VisionDeviceConstants kLeftVisionDevice = new VisionDeviceConstants(); // dot 13
 	public static VisionDeviceConstants kRightVisionDevice = new VisionDeviceConstants(); // dot 12
 
@@ -595,6 +557,7 @@ public class Constants {
 				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(-7.325)),
 				Rotation2d.fromDegrees(27.0));
 	}
+	*/
 
 	public static final class LinearServoConstants {
 		public static final int kMaxVelocity = 32; // mm/s

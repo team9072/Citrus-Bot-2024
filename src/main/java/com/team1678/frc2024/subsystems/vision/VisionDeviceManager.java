@@ -17,9 +17,6 @@ public class VisionDeviceManager extends Subsystem {
 		return mInstance;
 	}
 
-	private VisionDevice mLeftCamera;
-	private VisionDevice mRightCamera;
-
 	private List<VisionDevice> mAllCameras;
 
 	private static TunableNumber timestampOffset = new TunableNumber("VisionTimestampOffset", (0.1), false);
@@ -30,9 +27,7 @@ public class VisionDeviceManager extends Subsystem {
 	private static boolean disable_vision = false;
 
 	private VisionDeviceManager() {
-		mLeftCamera = new VisionDevice(Constants.kLeftVisionDevice);
-		mRightCamera = new VisionDevice(Constants.kRightVisionDevice);
-		mAllCameras = List.of(mLeftCamera, mRightCamera);
+		mAllCameras = List.of();
 	}
 
 	@Override
@@ -53,6 +48,7 @@ public class VisionDeviceManager extends Subsystem {
 		SmartDashboard.putBoolean("vision disabled", visionDisabled());
 	}
 
+	//FIXME: shouldn't this be lowerase double?
 	public Double getMovingAverageRead() {
 		return mMovingAvgRead;
 	}
@@ -62,15 +58,11 @@ public class VisionDeviceManager extends Subsystem {
 	}
 
 	public synchronized boolean fullyConnected() {
-		return mLeftCamera.isConnected() && mRightCamera.isConnected();
-	}
+		for (VisionDevice camera : mAllCameras) {
+			if (!camera.isConnected()) return false;
+		}
 
-	public synchronized VisionDevice getLeftVision() {
-		return mLeftCamera;
-	}
-
-	public synchronized VisionDevice getRightVision() {
-		return mRightCamera;
+		return true;
 	}
 
 	public static double getTimestampOffset() {
