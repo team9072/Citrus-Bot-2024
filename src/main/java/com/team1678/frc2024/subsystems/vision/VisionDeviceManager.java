@@ -17,7 +17,7 @@ public class VisionDeviceManager extends Subsystem {
 		return mInstance;
 	}
 
-	private List<VisionDevice> mAllCameras;
+	private List<CitrusVisionDevice> mAllCameras;
 
 	private static TunableNumber timestampOffset = new TunableNumber("VisionTimestampOffset", (0.1), false);
 
@@ -32,18 +32,18 @@ public class VisionDeviceManager extends Subsystem {
 
 	@Override
 	public void readPeriodicInputs() {
-		mAllCameras.forEach(VisionDevice::readPeriodicInputs);
+		mAllCameras.forEach(CitrusVisionDevice::readPeriodicInputs);
 		mMovingAvgRead = mHeadingAvg.getAverage();
 	}
 
 	@Override
 	public void writePeriodicOutputs() {
-		mAllCameras.forEach(VisionDevice::writePeriodicOutputs);
+		mAllCameras.forEach(CitrusVisionDevice::writePeriodicOutputs);
 	}
 
 	@Override
 	public void outputTelemetry() {
-		mAllCameras.forEach(VisionDevice::outputTelemetry);
+		mAllCameras.forEach(CitrusVisionDevice::outputTelemetry);
 		SmartDashboard.putNumber("Vision heading moving avg", getMovingAverageRead());
 		SmartDashboard.putBoolean("vision disabled", visionDisabled());
 	}
