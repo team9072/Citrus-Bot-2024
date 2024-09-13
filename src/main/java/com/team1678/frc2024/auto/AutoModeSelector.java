@@ -157,14 +157,8 @@ public class AutoModeSelector {
 			case THREE_NOTE_MODE_53:
 				return Optional.of(new ThreeNoteMode53());
 
-			case THREE_NOTE_MODE_45:
-				return Optional.of(new ThreeNoteMode45());
-
 			case THREE_NOTE_MODE_43:
 				return Optional.of(new ThreeNoteMode43());
-
-			case THREE_NOTE_MODE_35:
-				return Optional.of(new ThreeNoteMode35());
 
 			case THREE_NOTE_MODE_34:
 				return Optional.of(new ThreeNoteMode34());

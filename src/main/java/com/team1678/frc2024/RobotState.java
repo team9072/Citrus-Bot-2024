@@ -1,6 +1,6 @@
 package com.team1678.frc2024;
 
-import com.team1678.frc2024.subsystems.vision.VisionPoseAcceptor;
+// import com.team1678.frc2024.subsystems.vision.VisionPoseAcceptor;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
@@ -41,7 +41,7 @@ public class RobotState {
 	private InterpolatingTreeMap<InterpolatingDouble, Pose2d> odometry_to_vehicle;
 	private InterpolatingTreeMap<InterpolatingDouble, Translation2d> field_to_odometry;
 	private ExtendedKalmanFilter<N2, N2, N2> mKalmanFilter;
-	private VisionPoseAcceptor mPoseAcceptor;
+	//private VisionPoseAcceptor mPoseAcceptor;
 
 	private Twist2d vehicle_velocity_measured;
 	private Twist2d vehicle_velocity_predicted;
@@ -69,7 +69,7 @@ public class RobotState {
 		vehicle_velocity_predicted = Twist2d.identity();
 		vehicle_velocity_measured_filtered = new MovingAverageTwist2d(25);
 		mLatestVisionUpdate = Optional.empty();
-		mPoseAcceptor = new VisionPoseAcceptor();
+		//mPoseAcceptor = new VisionPoseAcceptor();
 	}
 
 	/**
@@ -139,12 +139,13 @@ public class RobotState {
 							.rotateBy(proximate_dt_pose.getRotation())
 							.inverse());
 
-			if (mPoseAcceptor.shouldAcceptVision(
-					vision_timestamp,
-					new Pose2d(field_to_vision, new Rotation2d()),
-					getLatestFieldToVehicle(),
-					vehicle_velocity_measured,
-					mIsInAuto)) {
+			// if (mPoseAcceptor.shouldAcceptVision(
+			// 		vision_timestamp,
+			// 		new Pose2d(field_to_vision, new Rotation2d()),
+			// 		getLatestFieldToVehicle(),
+			// 		vehicle_velocity_measured,
+			// 		mIsInAuto)) {
+				if (true) {
 				Translation2d field_to_odom = field_to_vision.translateBy(
 						proximate_dt_pose.getTranslation().inverse());
 				try {

@@ -15,7 +15,7 @@ import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.// VisionDeviceManager;
 import com.team1678.lib.util.Stopwatch;
 import java.util.List;
 
@@ -293,7 +293,7 @@ public class AdaptiveSixMode extends AutoModeBase {
     private void runNearShotToLeftSpikeSequence() throws AutoModeEndedException {
         s.slowContinuousShotState();
         runAction(new WaitAction(0.2));
-        VisionDeviceManager.setDisableVision(true);
+        // // VisionDeviceManager.setDisableVision(true);
         runAction(new SwerveTrajectoryAction(t.A6NearShotToS1));
         runAction(new SwerveTrajectoryAction(t.A6S1ToS3));
         runAction(new WaitAction(0.5));
@@ -306,7 +306,7 @@ public class AdaptiveSixMode extends AutoModeBase {
     private void runNearShotToRightSpikeSequence() throws AutoModeEndedException {
         s.slowContinuousShotState();
         runAction(new WaitAction(0.2));
-        VisionDeviceManager.setDisableVision(true);
+        // // VisionDeviceManager.setDisableVision(true);
         runAction(new SwerveTrajectoryAction(t.A6NearShotToS3));
         runAction(new SwerveTrajectoryAction(t.A6S3ToS1));
         runAction(new WaitAction(0.5));

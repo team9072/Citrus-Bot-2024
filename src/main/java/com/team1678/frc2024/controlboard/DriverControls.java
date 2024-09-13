@@ -4,9 +4,9 @@ import com.team1678.frc2024.subsystems.Climber;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Hood;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
-import com.team1678.frc2024.subsystems.LEDs;
+// import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriverControls {
@@ -17,7 +17,7 @@ public class DriverControls {
 	Climber mClimber = Climber.getInstance();
 	Hood mHood = Hood.getInstance();
 	Drive mDrive = Drive.getInstance();
-	LEDs mLEDs = LEDs.getInstance();
+	//LEDs // mLEDs = LEDs.getInstance();
 
 	private boolean mClimbMode = false;
 	private boolean top_buttons_clear = true;
@@ -111,7 +111,7 @@ public class DriverControls {
 			}
 
 			if (mControlBoard.operator.leftBumper.longPressed()) {
-				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
+				// VisionDeviceManager.setDisableVision(!// VisionDeviceManager.visionDisabled());
 			}
 
 			if (mControlBoard.operator.aButton.longPressed()) {

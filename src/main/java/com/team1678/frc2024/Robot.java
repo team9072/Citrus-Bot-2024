@@ -22,13 +22,14 @@ import com.team1678.frc2024.subsystems.Feeder;
 import com.team1678.frc2024.subsystems.Hood;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.IntakeRollers;
-import com.team1678.frc2024.subsystems.LEDs;
+//import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Serializer;
 import com.team1678.frc2024.subsystems.Shooter;
+import com.team1678.frc2024.subsystems.Subsystem;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.limelight.Limelight;
-import com.team1678.frc2024.subsystems.limelight.Limelight.Pipeline;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.limelight.Limelight;
+// import com.team1678.frc2024.subsystems.limelight.Limelight.Pipeline;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.Util;
 import com.team1678.lib.logger.LogUtil;
 import com.team1678.lib.sim.PhysicsSim;
@@ -70,14 +71,14 @@ public class Robot extends TimedRobot {
 	private Shooter mShooter;
 	private Hood mHood;
 	private Climber mClimber;
-	private LEDs mLEDs;
+	//private LEDs mLEDs;
 	private Cancoders mCancoders;
 
 	// vision
-	private final VisionDeviceManager mVisionDevices = VisionDeviceManager.getInstance();
+	// private final VisionDeviceManager mVisionDevices = // VisionDeviceManager.getInstance();
 
 	// limelight
-	private final Limelight mLimelight = Limelight.getInstance();
+	// private final Limelight mLimelight = Limelight.getInstance();
 
 	// enabled and disabled loopers
 	private final Looper mEnabledLooper = new Looper();
@@ -119,7 +120,7 @@ public class Robot extends TimedRobot {
 			mShooter = Shooter.getInstance();
 			mHood = Hood.getInstance();
 			mClimber = Climber.getInstance();
-			mLEDs = LEDs.getInstance();
+			// mLEDs = LEDs.getInstance();
 			mCancoders = Cancoders.getInstance();
 			CrashTracker.logRobotInit();
 
@@ -161,9 +162,13 @@ public class Robot extends TimedRobot {
 				mShooter,
 				mHood,
 				mClimber,
-				mLEDs,
-				mVisionDevices,
-				mLimelight
+				// mLEDs,
+				new Subsystem() {
+					
+				},
+				new Subsystem() {
+					
+				}
 			);
 			// spotless:on
 
@@ -192,9 +197,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		if (mVisionDevices.getMovingAverageRead() != null) {
-			mDrive.zeroGyro(mVisionDevices.getMovingAverageRead());
-		}
+		// if (mVisionDevices.getMovingAverageRead() != null) {
+		// 	mDrive.zeroGyro(mVisionDevices.getMovingAverageRead());
+		// }
 		Superstructure.getInstance().setFerry(false);
 		RobotState.getInstance().setIsInAuto(true);
 		mDisabledLooper.stop();
@@ -213,14 +218,14 @@ public class Robot extends TimedRobot {
 		try {
 			RobotState.getInstance().setIsInAuto(false);
 			mDrive.feedTeleopSetpoint(new ChassisSpeeds(0.0, 0.0, 0.0));
-			VisionDeviceManager.setDisableVision(false);
+			// VisionDeviceManager.setDisableVision(false);
 			mDisabledLooper.stop();
 			mEnabledLooper.start();
 
 			mSuperstructure.tuckState();
 			mSuperstructure.idleState();
 
-			mLimelight.setPipeline(Pipeline.TELEOP);
+			//mLimelight.setPipeline(Pipeline.TELEOP);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
@@ -258,7 +263,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		try {
-			VisionDeviceManager.setDisableVision(false);
+			// VisionDeviceManager.setDisableVision(false);
 			CrashTracker.logDisabledInit();
 			mEnabledLooper.stop();
 			mDisabledLooper.start();
@@ -276,7 +281,7 @@ public class Robot extends TimedRobot {
 		mAutoModeSelector.reset();
 		mAutoModeSelector.updateModeCreator(false);
 		mAutoModeExecutor = new AutoModeExecutor();
-		mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
+		//mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
 	}
 
 	@Override
@@ -303,7 +308,7 @@ public class Robot extends TimedRobot {
 			if (alliance_changed) {
 				System.out.println("Alliance changed! Requesting trajectory regeneration!");
 				TrajectoryGenerator.getInstance().forceRegenerateTrajectories(is_red_alliance);
-				mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
+				//mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
 			}
 
 			mAutoModeSelector.updateModeCreator(alliance_changed);
@@ -323,7 +328,7 @@ public class Robot extends TimedRobot {
 				RobotState.getInstance().reset(Timer.getFPGATimestamp(), Pose2d.identity());
 			}
 
-			SmartDashboard.putNumber("Vision Heading/Average", mVisionDevices.getMovingAverageRead());
+			//SmartDashboard.putNumber("Vision Heading/Average", mVisionDevices.getMovingAverageRead());
 
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);

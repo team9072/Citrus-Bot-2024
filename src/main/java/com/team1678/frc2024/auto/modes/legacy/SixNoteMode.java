@@ -14,7 +14,7 @@ import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.// VisionDeviceManager;
 import com.team254.lib.geometry.Pose2dWithMotion;
 import com.team254.lib.trajectory.Trajectory;
 import com.team254.lib.trajectory.timing.TimedState;
@@ -65,7 +65,7 @@ public class SixNoteMode extends AutoModeBase {
 		runAction(new SwerveTrajectoryAction(rightPickupToMidShot, false));
 		runAction(new SwerveTrajectoryAction(midShotToLeftShot, false));
 
-		VisionDeviceManager.setDisableVision(true);
+		// // VisionDeviceManager.setDisableVision(true);
 		runAction(new ParallelAction(List.of(
 				new SwerveTrajectoryAction(leftShotToFirstCenterPickup, false),
 				new SeriesAction(
@@ -75,7 +75,7 @@ public class SixNoteMode extends AutoModeBase {
 						new WaitAction(0.3),
 						new LambdaAction(() -> s.setWantPrep(false)),
 						new LambdaAction(() -> d.overrideHeading(false))))));
-		VisionDeviceManager.setDisableVision(false);
+		// // VisionDeviceManager.setDisableVision(false);
 
 		d.overrideHeading(true);
 		s.setWantPrep(true);

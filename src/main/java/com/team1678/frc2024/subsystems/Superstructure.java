@@ -5,7 +5,7 @@ import com.team1678.frc2024.FieldLayout;
 import com.team1678.frc2024.Ports;
 import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.RobotState;
-import com.team1678.frc2024.led.TimedLEDState;
+//import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
 import com.team1678.frc2024.loops.Loop;
 import com.team1678.frc2024.planners.ElevatorMotionPlanner;
@@ -57,8 +57,8 @@ public class Superstructure extends Subsystem {
 	private final Hood mHood = Hood.getInstance();
 
 	// LEDs
-	private final LEDs mLEDs = LEDs.getInstance();
-	private TimedLEDState mHeldState = TimedLEDState.NOTE_HELD_SHOT;
+	//private final LEDs mLEDs = LEDs.getInstance();
+	//private TimedLEDState mHeldState = TimedLEDState.NOTE_HELD_SHOT;
 
 	// Beam breaks
 	private BeamBreak mSerializerBreak = new BeamBreak(Ports.SERIALIZER_BREAK);
@@ -319,7 +319,7 @@ public class Superstructure extends Subsystem {
 
 			@Override
 			public void act() {
-				updateLEDs();
+			//	updateLEDs();
 			}
 
 			@Override
@@ -332,15 +332,15 @@ public class Superstructure extends Subsystem {
 	/**
 	 * Update state of LEDs based on BeamBreak readings.
 	 */
-	private void updateLEDs() {
-		if (mAmpBreak.get()) {
-			mLEDs.applyStates(TimedLEDState.ELEVATOR_LOADED);
-		} else if (mFeederBreak.get()) {
-			mLEDs.applyStates(mHeldState);
-		} else {
-			mLEDs.applyStates(TimedLEDState.OFF);
-		}
-	}
+	// private void updateLEDs() {
+	// 	if (mAmpBreak.get()) {
+	// 		// mLEDs.applyStates(TimedLEDState.ELEVATOR_LOADED);
+	// 	} else if (mFeederBreak.get()) {
+	// 		// mLEDs.applyStates(mHeldState);
+	// 	} else {
+	// 		// mLEDs.applyStates(TimedLEDState.OFF);
+	// 	}
+	// }
 
 	public boolean getFeederBreak() {
 		return mFeederBreak.get();
@@ -387,11 +387,11 @@ public class Superstructure extends Subsystem {
 	public void setFerry(boolean enable) {
 		FERRY_SHOT = enable;
 		if (FERRY_SHOT) {
-			mHeldState = TimedLEDState.NOTE_HELD_FERRY;
+			//mHeldState = TimedLEDState.NOTE_HELD_FERRY;
 		} else {
-			mHeldState = TimedLEDState.NOTE_HELD_SHOT;
+			//mHeldState = TimedLEDState.NOTE_HELD_SHOT;
 		}
-		updateLEDs();
+		//updateLEDs();
 	}
 
 	/**
@@ -426,12 +426,12 @@ public class Superstructure extends Subsystem {
 			new LambdaRequest(() -> WANTS_SPINDOWN = false),
 			idleRequest(),
 			mShooter.waitRequest(),
-			mLEDs.stateRequest(TimedLEDState.FIRING),
+			// mLEDs.stateRequest(TimedLEDState.FIRING),
 			mSerializer.stateRequest(Serializer.State.INTAKE),
 			mFeeder.stateRequest(Feeder.State.SHOOTER_FEED),
 			breakWait(mFeederBreak, false),
 			new WaitRequest(0.2),
-			mLEDs.stateRequest(TimedLEDState.OFF),
+			// mLEDs.stateRequest(TimedLEDState.OFF),
 			idleRequest(),
 			new LambdaRequest(() -> WANTS_SPINDOWN = true)
 		));
@@ -473,9 +473,9 @@ public class Superstructure extends Subsystem {
 			idleRequest(),
 			mIntakeDeploy.clearRequest(),
 			mElevator.retractRequest(),
-			mIntakeDeploy.tuckRequest(),
-			mLEDs.stateRequest
-			(TimedLEDState.OFF)
+			mIntakeDeploy.tuckRequest()
+			// mLEDs.stateRequest
+			//(TimedLEDState.OFF)
 		));
 	}
 	/**
@@ -489,8 +489,9 @@ public class Superstructure extends Subsystem {
 			mAmpRollers.stateRequest(AmpRollers.State.FORWARD),
 			breakWait(mAmpBreak, false),
 			new WaitRequest(3.0),
-			idleRequest(),
-			mLEDs.stateRequest(TimedLEDState.OFF)));
+			idleRequest()
+			// mLEDs.stateRequest(TimedLEDState.OFF));
+		));
 	}
 
 	/**
@@ -532,8 +533,8 @@ public class Superstructure extends Subsystem {
 				new SequentialRequest(
 					breakWait(mFeederBreak, true),
 					mSerializer.stateRequest(Serializer.State.IDLE),
-					mFeeder.stateRequest(Feeder.State.IDLE),
-					mLEDs.stateRequest(mHeldState)
+					mFeeder.stateRequest(Feeder.State.IDLE)
+					// mLEDs.stateRequest(mHeldState)
 				)
 			)
 		));
@@ -546,7 +547,7 @@ public class Superstructure extends Subsystem {
 	public void holdToAmpTransition() {
 		request(new SequentialRequest(
 			idleRequest(),
-			mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADING),
+			// mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADING),
 			mIntakeDeploy.clearRequest(),
 			mElevator.retractRequest(),
 
@@ -561,7 +562,7 @@ public class Superstructure extends Subsystem {
 			mSerializer.stateRequest(Serializer.State.SLOW_FEED),
 			breakWait(mAmpBreak, true),
 			idleRequest(),
-			mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADED),
+			// mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADED),
 			mIntakeDeploy.tuckRequest()
 		));
 	}
@@ -575,7 +576,7 @@ public class Superstructure extends Subsystem {
 		request(new SequentialRequest(
 			breakWait(mSerializerBreak, false),
 			idleRequest(),
-			mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADING),
+			// mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADING),
 			mIntakeDeploy.deployRequest(),
 			mElevator.retractRequest(),
 			mIntakeRollers.stateRequest(IntakeRollers.State.INTAKING),
@@ -583,7 +584,7 @@ public class Superstructure extends Subsystem {
 			mFeeder.stateRequest(Feeder.State.AMP_FEED),
 			mSerializer.stateRequest(Serializer.State.INTAKE),
 			breakWait(mAmpBreak, true),
-			mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADED),
+			// mLEDs.stateRequest(TimedLEDState.ELEVATOR_LOADED),
 			idleRequest(),
 			mIntakeRollers.stateRequest(IntakeRollers.State.EXHAUST),
 			mIntakeDeploy.clearRequest(),
@@ -613,7 +614,7 @@ public class Superstructure extends Subsystem {
 	public void continuousShootState() {
 		request(new SequentialRequest(
 			mShooter.waitRequest(),
-			mLEDs.stateRequest(TimedLEDState.FIRING),
+			// mLEDs.stateRequest(TimedLEDState.FIRING),
 			mFeeder.stateRequest(Feeder.State.SHOOTER_FEED),
 			mIntakeRollers.stateRequest(IntakeRollers.State.INTAKING),
 			mSerializer.stateRequest(Serializer.State.INTAKE),
@@ -631,7 +632,7 @@ public class Superstructure extends Subsystem {
 		request(new SequentialRequest(
 			mIntakeRollers.stateRequest(IntakeRollers.State.INTAKING),
 			mShooter.waitRequest(),
-			mLEDs.stateRequest(TimedLEDState.FIRING),
+			// mLEDs.stateRequest(TimedLEDState.FIRING),
 			mFeeder.stateRequest(Feeder.State.SLOW_FEED),
 			mSerializer.stateRequest(Serializer.State.INTAKE),
 			mIntakeDeploy.deployRequest()
