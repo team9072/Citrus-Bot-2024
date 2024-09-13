@@ -14,7 +14,7 @@ import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.util.Stopwatch;
 import com.team254.lib.geometry.Pose2dWithMotion;
 import com.team254.lib.trajectory.Trajectory;
@@ -60,7 +60,8 @@ public class SemiFastSixNoteMode extends AutoModeBase {
 						new LambdaAction(() -> s.slowContinuousShotState())
 				))));
 		d.overrideHeading(false);
-		VisionDeviceManager.setDisableVision(true);
+		// TODO: Bring vision back
+		// VisionDeviceManager.setDisableVision(true);
 		runAction(new ParallelAction(List.of(
 				new SwerveTrajectoryAction(S1ShotToN1Pickup, false),
 				new SeriesAction(
@@ -70,7 +71,8 @@ public class SemiFastSixNoteMode extends AutoModeBase {
                     new LambdaAction(() -> s.intakeToHoldTransition()),
 					new LambdaAction(() -> s.setWantPrep(true))
 		))));
-		VisionDeviceManager.setDisableVision(false);
+		// TODO: Bring vision back
+		// VisionDeviceManager.setDisableVision(false);
 		d.setUsePIDControl(false);
 
 		boolean n2_taken = false;
@@ -110,14 +112,16 @@ public class SemiFastSixNoteMode extends AutoModeBase {
         runAction(new WaitForSuperstructureAction(0.4));
 		d.overrideHeading(false);
 		if (n2_taken) {
-			VisionDeviceManager.setDisableVision(true);
+			// TODO: Bring vision back
+			// VisionDeviceManager.setDisableVision(true);
 			runAction(new ParallelAction(List.of(
 			new SwerveTrajectoryAction(TrajectoryGenerator.getInstance().getTrajectorySet().SF6FarShotToN3Pickup, false),
 			new SeriesAction(
 					new WaitAction(0.3),
 					new LambdaAction(() -> s.intakeToHoldTransition())))));
 			d.overrideHeading(true);
-			VisionDeviceManager.setDisableVision(false);
+			// TODO: Bring vision back
+			// VisionDeviceManager.setDisableVision(false);
 			runAction(new SwerveTrajectoryAction(TrajectoryGenerator.getInstance().getTrajectorySet().SF6N3PickupToNearShot, false));
 		} else {
 			runAction(new ParallelAction(List.of(
@@ -140,9 +144,11 @@ public class SemiFastSixNoteMode extends AutoModeBase {
 		runAction(new WaitForSuperstructureAction(1.0));
 		s.continuousShootState();
 
-		VisionDeviceManager.setDisableVision(true);
+		// TODO: Bring vision back
+		// VisionDeviceManager.setDisableVision(true);
 		runAction(new SwerveTrajectoryAction(NearShotToS2Pickup, false));
-		VisionDeviceManager.setDisableVision(false);
+		// TODO: Bring vision back
+		// VisionDeviceManager.setDisableVision(false);
 		runAction(new WaitAction(0.5));
 		runAction(new SwerveTrajectoryAction(S2PickupToS3Pickup, false));
 

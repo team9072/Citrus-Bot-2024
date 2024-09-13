@@ -6,7 +6,7 @@ import com.team1678.frc2024.subsystems.Hood;
 import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriverControls {
@@ -110,9 +110,10 @@ public class DriverControls {
 				mSuperstructure.ampUnjam();
 			}
 
-			if (mControlBoard.operator.leftBumper.longPressed()) {
-				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
-			}
+			// TODO: Bring vision back
+			// if (mControlBoard.operator.leftBumper.longPressed()) {
+			// 	VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
+			// }
 
 			if (mControlBoard.operator.aButton.longPressed()) {
 				System.out.println("Homing Hood!");

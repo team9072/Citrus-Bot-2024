@@ -1,6 +1,6 @@
 package com.team1678.frc2024;
 
-import com.team1678.frc2024.subsystems.vision.VisionPoseAcceptor;
+// import com.team1678.frc2024.subsystems.vision.VisionPoseAcceptor;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
@@ -41,7 +41,8 @@ public class RobotState {
 	private InterpolatingTreeMap<InterpolatingDouble, Pose2d> odometry_to_vehicle;
 	private InterpolatingTreeMap<InterpolatingDouble, Translation2d> field_to_odometry;
 	private ExtendedKalmanFilter<N2, N2, N2> mKalmanFilter;
-	private VisionPoseAcceptor mPoseAcceptor;
+	// TODO: Bring vision back
+	// private VisionPoseAcceptor mPoseAcceptor;
 
 	private Twist2d vehicle_velocity_measured;
 	private Twist2d vehicle_velocity_predicted;
@@ -69,7 +70,8 @@ public class RobotState {
 		vehicle_velocity_predicted = Twist2d.identity();
 		vehicle_velocity_measured_filtered = new MovingAverageTwist2d(25);
 		mLatestVisionUpdate = Optional.empty();
-		mPoseAcceptor = new VisionPoseAcceptor();
+		// TODO: Bring vision back
+		// mPoseAcceptor = new VisionPoseAcceptor();
 	}
 
 	/**
@@ -139,32 +141,33 @@ public class RobotState {
 							.rotateBy(proximate_dt_pose.getRotation())
 							.inverse());
 
-			if (mPoseAcceptor.shouldAcceptVision(
-					vision_timestamp,
-					new Pose2d(field_to_vision, new Rotation2d()),
-					getLatestFieldToVehicle(),
-					vehicle_velocity_measured,
-					mIsInAuto)) {
-				Translation2d field_to_odom = field_to_vision.translateBy(
-						proximate_dt_pose.getTranslation().inverse());
-				try {
-					Vector<N2> stdevs = VecBuilder.fill(Math.pow(update.xy_stdev, 1), Math.pow(update.xy_stdev, 1));
-					mKalmanFilter.correct(
-							VecBuilder.fill(0.0, 0.0),
-							VecBuilder.fill(
-									field_to_odom.getTranslation().x(),
-									field_to_odom.getTranslation().y()),
-							StateSpaceUtil.makeCovarianceMatrix(Nat.N2(), stdevs));
-					field_to_odometry.put(
-							new InterpolatingDouble(vision_timestamp),
-							new Translation2d(mKalmanFilter.getXhat(0), mKalmanFilter.getXhat(1)));
-					if (!getHasRecievedVisionUpdate()) {
-						mHasRecievedVisionUpdate = true;
-					}
-				} catch (Exception e) {
-					DriverStation.reportError(update.xy_stdev + "//QR Decomposition failed: ", e.getStackTrace());
-				}
-			}
+			// TODO: Bring vision back
+			// if (mPoseAcceptor.shouldAcceptVision(
+			// 		vision_timestamp,
+			// 		new Pose2d(field_to_vision, new Rotation2d()),
+			// 		getLatestFieldToVehicle(),
+			// 		vehicle_velocity_measured,
+			// 		mIsInAuto)) {
+			// 	Translation2d field_to_odom = field_to_vision.translateBy(
+			// 			proximate_dt_pose.getTranslation().inverse());
+			// 	try {
+			// 		Vector<N2> stdevs = VecBuilder.fill(Math.pow(update.xy_stdev, 1), Math.pow(update.xy_stdev, 1));
+			// 		mKalmanFilter.correct(
+			// 				VecBuilder.fill(0.0, 0.0),
+			// 				VecBuilder.fill(
+			// 						field_to_odom.getTranslation().x(),
+			// 						field_to_odom.getTranslation().y()),
+			// 				StateSpaceUtil.makeCovarianceMatrix(Nat.N2(), stdevs));
+			// 		field_to_odometry.put(
+			// 				new InterpolatingDouble(vision_timestamp),
+			// 				new Translation2d(mKalmanFilter.getXhat(0), mKalmanFilter.getXhat(1)));
+			// 		if (!getHasRecievedVisionUpdate()) {
+			// 			mHasRecievedVisionUpdate = true;
+			// 		}
+			// 	} catch (Exception e) {
+			// 		DriverStation.reportError(update.xy_stdev + "//QR Decomposition failed: ", e.getStackTrace());
+			// 	}
+			// }
 		}
 	}
 

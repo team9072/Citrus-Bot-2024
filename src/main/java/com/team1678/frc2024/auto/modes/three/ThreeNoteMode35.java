@@ -15,8 +15,8 @@ import com.team1678.frc2024.paths.TrajectoryGenerator;
 import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.limelight.Limelight;
-import com.team1678.frc2024.subsystems.limelight.Limelight.NotePosition;
+// import com.team1678.frc2024.subsystems.limelight.Limelight;
+// import com.team1678.frc2024.subsystems.limelight.Limelight.NotePosition;
 import com.team254.lib.geometry.Pose2dWithMotion;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.trajectory.Trajectory;
@@ -26,7 +26,8 @@ import java.util.List;
 public class ThreeNoteMode35 extends AutoModeBase {
 	private Drive d = Drive.getInstance();
 	private Superstructure s = Superstructure.getInstance();
-	private Limelight n = Limelight.getInstance();
+	// TODO: Bring vision back
+	// private Limelight n = Limelight.getInstance();
 
 	Trajectory<TimedState<Pose2dWithMotion>> startToN3Pickup;
 	Trajectory<TimedState<Pose2dWithMotion>> N5PickupToNearShot;
@@ -77,20 +78,23 @@ public class ThreeNoteMode35 extends AutoModeBase {
 		runAction(new LambdaAction(() -> s.fireState()));
 		runAction(new WaitForSuperstructureAction(0.3));
 
-		boolean hasN5 = n.hasNote(NotePosition.N5);
+		// TODO: Bring vision back
+		// boolean hasN5 = n.hasNote(NotePosition.N5);
 
-		runAction(new ParallelAction(List.of(
-				new SwerveTrajectoryAction(hasN5 ? shotToN5Pickup : shotToN4Pickup, false),
-				new SeriesAction(
-						new LambdaAction(() -> d.overrideHeading(false)),
-						new WaitToPassXCoordinateAction(5.0),
-						new LambdaAction(() -> s.intakeToHoldTransition())))));
+		// TODO: Bring vision back
+		// runAction(new ParallelAction(List.of(
+		// 		new SwerveTrajectoryAction(hasN5 ? shotToN5Pickup : shotToN4Pickup, false),
+		// 		new SeriesAction(
+		// 				new LambdaAction(() -> d.overrideHeading(false)),
+		// 				new WaitToPassXCoordinateAction(5.0),
+		// 				new LambdaAction(() -> s.intakeToHoldTransition())))));
 
-		runAction(new ParallelAction(List.of(
-				new SwerveTrajectoryAction(hasN5 ? N5PickupToNearShot : N4PickupToNearShot, false),
-				new SeriesAction(
-						new WaitToPassXCoordinateAction(6.5),
-						new LambdaAction(() -> d.overrideHeading(true))))));
+		// TODO: Bring vision back
+		// runAction(new ParallelAction(List.of(
+		// 		new SwerveTrajectoryAction(hasN5 ? N5PickupToNearShot : N4PickupToNearShot, false),
+		// 		new SeriesAction(
+		// 				new WaitToPassXCoordinateAction(6.5),
+		// 				new LambdaAction(() -> d.overrideHeading(true))))));
 						
 		runAction(new LambdaAction(() -> s.tuckState()));
 		runAction(new WaitAction(0.2));

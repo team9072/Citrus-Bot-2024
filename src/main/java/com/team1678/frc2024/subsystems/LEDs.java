@@ -13,7 +13,7 @@ import com.team1678.frc2024.led.Color;
 import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
 import com.team1678.frc2024.loops.Loop;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.requests.Request;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -72,15 +72,16 @@ public class LEDs extends Subsystem {
 	@Override
 	public void readPeriodicInputs() {
 		if (mDisabled) {
-			if (!VisionDeviceManager.getInstance().fullyConnected()) {
-				applyStates(TimedLEDState.NO_VISION);
+			// TODO: Bring vision back
+			// if (!VisionDeviceManager.getInstance().fullyConnected()) {
+			// 	applyStates(TimedLEDState.NO_VISION);
+			// } else {
+			if (Robot.is_red_alliance) {
+				applyStates(TimedLEDState.DISABLE_RED);
 			} else {
-				if (Robot.is_red_alliance) {
-					applyStates(TimedLEDState.DISABLE_RED);
-				} else {
-					applyStates(TimedLEDState.DISABLE_BLUE);
-				}
+				applyStates(TimedLEDState.DISABLE_BLUE);
 			}
+			// }
 		}
 
 		double timestamp = Timer.getFPGATimestamp();

@@ -8,11 +8,11 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.team1678.frc2024.subsystems.Drive.KinematicLimits;
-import com.team1678.frc2024.subsystems.limelight.GoalTracker;
+// import com.team1678.frc2024.subsystems.limelight.GoalTracker;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceConstants;
+// import com.team1678.frc2024.subsystems.vision.VisionDeviceConstants;
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
@@ -581,20 +581,22 @@ public class Constants {
 								"{\"camera_matrix\":[[910.3756558875847,0,809.2765926238984],[0,909.8129438903156,644.2713243574459],[0,0,1]],\"distortion_coefficients\":[0.06236712235474046,-0.062294270427656145,0.004664145480488657,-0.0006911909097633055,-0.00762026244976393],\"tag_size\":0.163,\"camera_settings\":{\"width\":1600,\"height\":1200,\"fps\":50}}")));
 	}
 
-	public static VisionDeviceConstants kLeftVisionDevice = new VisionDeviceConstants(); // dot 13
-	public static VisionDeviceConstants kRightVisionDevice = new VisionDeviceConstants(); // dot 12
+	// TODO: Bring vision back
+	// public static VisionDeviceConstants kLeftVisionDevice = new VisionDeviceConstants(); // dot 13
+	// public static VisionDeviceConstants kRightVisionDevice = new VisionDeviceConstants(); // dot 12
 
-	static {
-		kLeftVisionDevice.kTableName = "PolarisLeft";
-		kLeftVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(7.325)),
-				Rotation2d.fromDegrees(-27));
+	// TODO: Bring vision back
+	// static {
+	// 	kLeftVisionDevice.kTableName = "PolarisLeft";
+	// 	kLeftVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
+	// 			new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(7.325)),
+	// 			Rotation2d.fromDegrees(-27));
 
-		kRightVisionDevice.kTableName = "PolarisRight";
-		kRightVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(-7.325)),
-				Rotation2d.fromDegrees(27.0));
-	}
+	// 	kRightVisionDevice.kTableName = "PolarisRight";
+	// 	kRightVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
+	// 			new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(-7.325)),
+	// 			Rotation2d.fromDegrees(27.0));
+	// }
 
 	public static final class LinearServoConstants {
 		public static final int kMaxVelocity = 32; // mm/s
@@ -614,15 +616,17 @@ public class Constants {
 		public static final Rotation2d kCameraPitch = Rotation2d.fromDegrees(-18.0);
 		public static final Rotation2d kCameraYaw = Rotation2d.fromDegrees(0.0);
 
-		public static final GoalTracker.Configuration kNoteTrackerConstants = new GoalTracker.Configuration();
+		// TODO: Bring vision back
+		// public static final GoalTracker.Configuration kNoteTrackerConstants = new GoalTracker.Configuration();
 
-		static {
-			kNoteTrackerConstants.kMaxTrackerDistance = 0.46;
-			kNoteTrackerConstants.kMaxGoalTrackAge = 0.5;
-			kNoteTrackerConstants.kCameraFrameRate = 30.0;
-			kNoteTrackerConstants.kStabilityWeight = 1.0;
-			kNoteTrackerConstants.kAgeWeight = 0.2;
-			kNoteTrackerConstants.kSwitchingWeight = 0.2;
-		}
+		// TODO: Bring vision back
+		// static {
+		// 	kNoteTrackerConstants.kMaxTrackerDistance = 0.46;
+		// 	kNoteTrackerConstants.kMaxGoalTrackAge = 0.5;
+		// 	kNoteTrackerConstants.kCameraFrameRate = 30.0;
+		// 	kNoteTrackerConstants.kStabilityWeight = 1.0;
+		// 	kNoteTrackerConstants.kAgeWeight = 0.2;
+		// 	kNoteTrackerConstants.kSwitchingWeight = 0.2;
+		// }
 	}
 }
