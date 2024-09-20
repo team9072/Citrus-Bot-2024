@@ -26,7 +26,7 @@ import java.util.List;
 public class ThreeNoteMode45 extends AutoModeBase {
 	private Drive d = Drive.getInstance();
 	private Superstructure s = Superstructure.getInstance();
-	private Limelight n = Limelight.getInstance();
+	//private Limelight n = Limelight.getInstance();
 
 	Trajectory<TimedState<Pose2dWithMotion>> startToN4Pickup;
 	Trajectory<TimedState<Pose2dWithMotion>> N4PickupToFarShot;
@@ -77,7 +77,7 @@ public class ThreeNoteMode45 extends AutoModeBase {
 		runAction(new LambdaAction(() -> s.fireState()));
 		runAction(new WaitForSuperstructureAction(0.3));
 
-		boolean hasN5 = n.hasNote(NotePosition.N5);
+		boolean hasN5 = true; //n.hasNote(NotePosition.N5);
 
 		runAction(new ParallelAction(List.of(
 				new SwerveTrajectoryAction(hasN5 ? shotToN5Pickup : shotToN3Pickup, false),

@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.ejml.simple.UnsupportedOperation;
+
 public class Limelight extends Subsystem {
 	private final String name;
 	private final Pose2d robotToCameraTransform;
@@ -38,7 +40,8 @@ public class Limelight extends Subsystem {
 					LimelightConstants.kCameraPitch,
 					LimelightConstants.kCameraYaw);
 		}
-		return mInstance;
+		throw new UnsupportedOperation("No limelight on this robot");
+		//return mInstance;
 	}
 
 	// Default Init
