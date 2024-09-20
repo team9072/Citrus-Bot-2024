@@ -40,8 +40,7 @@ public class Limelight extends Subsystem {
 					LimelightConstants.kCameraPitch,
 					LimelightConstants.kCameraYaw);
 		}
-		throw new UnsupportedOperation("No limelight on this robot");
-		//return mInstance;
+		return mInstance;
 	}
 
 	// Default Init
@@ -56,6 +55,8 @@ public class Limelight extends Subsystem {
 		this.cameraHeightMeters = cameraHeightMeters;
 		this.cameraPitch = cameraPitch;
 		this.cameraYaw = cameraYaw;
+
+		throw new UnsupportedOperation("No limelight on this robot");
 	}
 
 	private GoalTracker noteTracker = new GoalTracker(Constants.LimelightConstants.kNoteTrackerConstants);
