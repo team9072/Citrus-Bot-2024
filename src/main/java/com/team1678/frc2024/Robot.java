@@ -190,7 +190,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		if (mVisionDevices.getMovingAverageRead() != null) {
+		if (!Double.isNaN(mVisionDevices.getMovingAverageRead())) {
 			mDrive.zeroGyro(mVisionDevices.getMovingAverageRead());
 		}
 		Superstructure.getInstance().setFerry(false);

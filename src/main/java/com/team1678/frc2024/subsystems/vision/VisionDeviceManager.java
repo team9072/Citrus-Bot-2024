@@ -21,7 +21,7 @@ public class VisionDeviceManager extends Subsystem {
 	private static TunableNumber timestampOffset = new TunableNumber("VisionTimestampOffset", (0.1), false);
 
 	private MovingAverage mHeadingAvg = new MovingAverage(100);
-	private double mMovingAvgRead = 0.0;
+	private double mMovingAvgRead = Double.NaN;
 
 	private static boolean disable_vision = false;
 
@@ -47,8 +47,7 @@ public class VisionDeviceManager extends Subsystem {
 		SmartDashboard.putBoolean("vision disabled", visionDisabled());
 	}
 
-	//FIXME: shouldn't this be lowerase double?
-	public Double getMovingAverageRead() {
+	public double getMovingAverageRead() {
 		return mMovingAvgRead;
 	}
 
