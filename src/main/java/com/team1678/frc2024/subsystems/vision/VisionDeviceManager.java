@@ -1,6 +1,5 @@
 package com.team1678.frc2024.subsystems.vision;
 
-import com.team1678.frc2024.Constants;
 import com.team1678.frc2024.subsystems.Subsystem;
 import com.team1678.lib.TunableNumber;
 import com.team254.lib.util.MovingAverage;

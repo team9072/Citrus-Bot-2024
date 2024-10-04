@@ -12,20 +12,12 @@ import com.team1678.frc2024.subsystems.limelight.GoalTracker;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceConstants;
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
-import edu.wpi.first.math.Matrix;
-import edu.wpi.first.math.VecBuilder;
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.numbers.N1;
-import edu.wpi.first.math.numbers.N2;
 import edu.wpi.first.math.util.Units;
-import java.util.Map;
 import java.util.function.BooleanSupplier;
 
 public class Constants {

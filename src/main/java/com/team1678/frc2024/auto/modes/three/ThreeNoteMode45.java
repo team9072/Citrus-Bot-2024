@@ -15,8 +15,6 @@ import com.team1678.frc2024.paths.TrajectoryGenerator;
 import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.limelight.Limelight;
-import com.team1678.frc2024.subsystems.limelight.Limelight.NotePosition;
 import com.team254.lib.geometry.Pose2dWithMotion;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.trajectory.Trajectory;

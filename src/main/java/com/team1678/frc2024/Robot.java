@@ -26,8 +26,6 @@ import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Serializer;
 import com.team1678.frc2024.subsystems.Shooter;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.limelight.Limelight;
-import com.team1678.frc2024.subsystems.limelight.Limelight.Pipeline;
 import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.Util;
 import com.team1678.lib.logger.LogUtil;
