@@ -25,8 +25,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-import org.ejml.simple.UnsupportedOperation;
-
 public class CitrusVisionDevice extends VisionDevice {
 	private final VisionDeviceConstants mConstants;
 	private PeriodicIO mPeriodicIO = new PeriodicIO();
@@ -66,7 +64,7 @@ public class CitrusVisionDevice extends VisionDevice {
 		mConfigTable.getEntry("camera_auto_exposure").setDouble(mPeriodicIO.camera_auto_exposure ? 0.0 : 1.0);
 		mConfigTable.getEntry("camera_gain").setDouble(mPeriodicIO.camera_gain);
 
-		throw new UnsupportedOperation("This robot does not use the Citrus vision system");
+		throw new UnsupportedOperationException("This robot does not use the Citrus vision system");
 	}
 
 	private void processFrames() {
