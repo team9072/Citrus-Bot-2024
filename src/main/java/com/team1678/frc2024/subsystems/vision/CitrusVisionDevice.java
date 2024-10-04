@@ -174,7 +174,7 @@ public class CitrusVisionDevice extends VisionDevice {
 			}
 
 			SmartDashboard.putNumber("Vision Heading/" + mConstants.kTableName, rotation_degrees);
-			VisionDeviceManager.getInstance().getMovingAverage().addNumber(rotation_degrees);
+			VisionDeviceManager.getInstance().addHeadingMeasuremant(rotation_degrees);
 		}
 	}
 

@@ -51,8 +51,8 @@ public class VisionDeviceManager extends Subsystem {
 		return mMovingAvgRead;
 	}
 
-	public synchronized MovingAverage getMovingAverage() {
-		return mHeadingAvg;
+	public synchronized void addHeadingMeasuremant(double headingDegrees) {
+		mHeadingAvg.addNumber(headingDegrees);
 	}
 
 	public synchronized boolean fullyConnected() {
