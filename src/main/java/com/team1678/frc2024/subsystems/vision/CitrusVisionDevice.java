@@ -10,6 +10,8 @@ import com.team1678.lib.Util;
 import com.team1678.lib.logger.LogUtil;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Rotation2d;
+import com.team254.lib.geometry.Transform2d;
+
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.networktables.DoubleArraySubscriber;
 import edu.wpi.first.networktables.IntegerSubscriber;
@@ -240,5 +242,13 @@ public class CitrusVisionDevice extends VisionDevice {
 		double latest_timestamp = 0.0;
 		List<VisionFrame> frames = new ArrayList<VisionFrame>();
 		boolean is_connected;
+	}
+
+	public static class VisionDeviceConstants {
+		public String kTableName = "";
+		public Transform2d kRobotToCamera = new Transform2d();
+		public int kCameraId = 0;
+		public int kCameraResolutionWidth = 1600;
+		public int kCameraResolutionHeight = 1200;
 	}
 }
