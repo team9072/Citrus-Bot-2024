@@ -59,7 +59,7 @@ public class Ports {
 	/* BEAM BREAK DIO CHANNELS*/
 	public static final int SERIALIZER_BREAK = 1;
 	public static final int FEEDER_BREAK = 2;
-	public static final int AMP_BREAK = 3; 
+	public static final int AMP_BREAK = 0; 
 
 	/* LINEAR SERVO PWM CHANNELS */
 	public static final int CLIMBER_LINEAR_ACTUATOR = 9;

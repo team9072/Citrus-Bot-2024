@@ -22,7 +22,7 @@ import java.util.function.BooleanSupplier;
 
 public class Constants {
 
-	public static boolean isComp;
+	public static boolean isComp = true;
 
 	public static BooleanSupplier isCompSupplier() {
 		return () -> isComp;
@@ -124,7 +124,7 @@ public class Constants {
 		/*** MODULE SPECIFIC CONSTANTS ***/
 		/* Front Left Module - Module 0 */
 		public static final class Mod0 {
-			public static final double compAngleOffset = -0.333251953125;
+			public static final double compAngleOffset = (-0.168701 * 360) - 180;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -136,7 +136,7 @@ public class Constants {
 
 		/* Front Right Module - Module 1 */
 		public static final class Mod1 {
-			public static final double compAngleOffset = -0.45068359375;
+			public static final double compAngleOffset = (0.952148 * 360);
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -148,7 +148,7 @@ public class Constants {
 
 		/* Back Left Module - Module 2 */
 		public static final class Mod2 {
-			public static final double compAngleOffset = -0.637451171875;
+			public static final double compAngleOffset = (0.141357 * 360) - 180;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -160,7 +160,7 @@ public class Constants {
 
 		/* Back Right Module - Module 3 */
 		public static final class Mod3 {
-			public static final double compAngleOffset = 0.425537109375;
+			public static final double compAngleOffset = (-0.074463 * 360);
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -272,18 +272,18 @@ public class Constants {
 			kDeployServoConstants.kKs = 0.0;
 			kDeployServoConstants.kKg = 0.0;
 
-			kDeployServoConstants.kCruiseVelocity = 1.5 * kDeployServoConstants.kRotationsPerUnitDistance;
-			kDeployServoConstants.kAcceleration = 20.0 * kDeployServoConstants.kRotationsPerUnitDistance;
+			kDeployServoConstants.kCruiseVelocity = 1.5 / kDeployServoConstants.kRotationsPerUnitDistance;
+			kDeployServoConstants.kAcceleration = 20.0 / kDeployServoConstants.kRotationsPerUnitDistance;
 
 			kDeployServoConstants.kMaxForwardOutput = 12.0;
 			kDeployServoConstants.kMaxReverseOutput = -12.0;
 
-			kDeployServoConstants.kEnableSupplyCurrentLimit = true;
+			kDeployServoConstants.kEnableSupplyCurrentLimit = false;
 			kDeployServoConstants.kSupplyCurrentLimit = 40; // amps
 			kDeployServoConstants.kSupplyCurrentThreshold = 40; // amps
 			kDeployServoConstants.kSupplyCurrentTimeout = 0.01; // seconds
 
-			kDeployServoConstants.kEnableStatorCurrentLimit = true;
+			kDeployServoConstants.kEnableStatorCurrentLimit = false;
 			kDeployServoConstants.kStatorCurrentLimit = 80; // amps
 
 			kDeployServoConstants.kNeutralMode = NeutralModeValue.Brake;
