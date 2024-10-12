@@ -14,46 +14,47 @@ public class Ports {
 	 */
 
 	/* DRIVETRAIN CAN DEVICE IDS */
-	public static final CanDeviceId FL_DRIVE = new CanDeviceId(0, "canivore1");
-	public static final CanDeviceId FL_ROTATION = new CanDeviceId(1, "canivore1");
-	public static final CanDeviceId FL_CANCODER = new CanDeviceId(0, "canivore1");
+	public static final CanDeviceId FL_DRIVE = new CanDeviceId(2, "canivore1");
+	public static final CanDeviceId FL_ROTATION = new CanDeviceId(3, "canivore1");
+	public static final CanDeviceId FL_CANCODER = new CanDeviceId(4, "canivore1");
 
-	public static final CanDeviceId FR_DRIVE = new CanDeviceId(2, "canivore1");
-	public static final CanDeviceId FR_ROTATION = new CanDeviceId(3, "canivore1");
-	public static final CanDeviceId FR_CANCODER = new CanDeviceId(1, "canivore1");
+	public static final CanDeviceId FR_DRIVE = new CanDeviceId(5, "canivore1");
+	public static final CanDeviceId FR_ROTATION = new CanDeviceId(6, "canivore1");
+	public static final CanDeviceId FR_CANCODER = new CanDeviceId(7, "canivore1");
 
-	public static final CanDeviceId BL_DRIVE = new CanDeviceId(4, "canivore1");
-	public static final CanDeviceId BL_ROTATION = new CanDeviceId(5, "canivore1");
-	public static final CanDeviceId BL_CANCODER = new CanDeviceId(2, "canivore1");
+	public static final CanDeviceId BL_DRIVE = new CanDeviceId(8, "canivore1");
+	public static final CanDeviceId BL_ROTATION = new CanDeviceId(9, "canivore1");
+	public static final CanDeviceId BL_CANCODER = new CanDeviceId(10, "canivore1");
 
-	public static final CanDeviceId BR_DRIVE = new CanDeviceId(6, "canivore1");
-	public static final CanDeviceId BR_ROTATION = new CanDeviceId(7, "canivore1");
-	public static final CanDeviceId BR_CANCODER = new CanDeviceId(3, "canivore1");
+	public static final CanDeviceId BR_DRIVE = new CanDeviceId(11, "canivore1");
+	public static final CanDeviceId BR_ROTATION = new CanDeviceId(12, "canivore1");
+	public static final CanDeviceId BR_CANCODER = new CanDeviceId(13, "canivore1");
 
 	/* SUBSYSTEM CAN DEVICE IDS */
-	public static final CanDeviceId INTAKE_PIVOT = new CanDeviceId(8, "canivore1");
-	public static final CanDeviceId INTAKE_ROLLER = new CanDeviceId(9, "rio");
+	public static final CanDeviceId INTAKE_PIVOT = new CanDeviceId(14, "canivore1");
+	public static final CanDeviceId INTAKE_ROLLER = new CanDeviceId(15, "canivore1");
 
-	public static final CanDeviceId SERIALIZER = new CanDeviceId(10, "canivore1");
-	public static final CanDeviceId FEEDER = new CanDeviceId(11, "canivore1");
+	public static final CanDeviceId SERIALIZER = new CanDeviceId(16, "canivore1");
+	public static final CanDeviceId FEEDER = new CanDeviceId(17, "canivore1");
 
-	public static final CanDeviceId AMP_ROLLER = new CanDeviceId(12, "rio");
+	public static final CanDeviceId AMP_ROLLER = new CanDeviceId(18, "canivore1");
 
-	public static final CanDeviceId ELEVATOR_MAIN = new CanDeviceId(13, "canivore1");
-	public static final CanDeviceId ELEVATOR_FOLLOWER = new CanDeviceId(14, "canivore1");
+	public static final CanDeviceId ELEVATOR_MAIN = new CanDeviceId(19, "canivore1");
+	public static final CanDeviceId ELEVATOR_FOLLOWER = new CanDeviceId(20, "canivore1");
 
-	public static final CanDeviceId SHOOTER_TOP = new CanDeviceId(15, "canivore1");
-	public static final CanDeviceId SHOOTER_BOTTOM = new CanDeviceId(16, "canivore1");
+	public static final CanDeviceId SHOOTER_TOP = new CanDeviceId(21, "canivore1");
+	public static final CanDeviceId SHOOTER_BOTTOM = new CanDeviceId(22, "canivore1");
 
-	public static final CanDeviceId HOOD = new CanDeviceId(17, "canivore1");
-	public static final CanDeviceId HOOD_CANCODER = new CanDeviceId(5, "canivore1");
+	public static final CanDeviceId HOOD = new CanDeviceId(23, "canivore1");
+	public static final CanDeviceId HOOD_CANCODER = new CanDeviceId(24, "canivore1");
 
-	public static final CanDeviceId CLIMBER_MAIN = new CanDeviceId(18, "canivore1");
-	public static final CanDeviceId CLIMBER_FOLLOWER = new CanDeviceId(19, "canivore1");
+	public static final CanDeviceId CLIMBER_MAIN = new CanDeviceId(25, "canivore1");
+	public static final CanDeviceId CLIMBER_FOLLOWER = new CanDeviceId(26, "canivore1");
 
-	public static final int PIGEON = 20;
+	// public static final CanDeviceId PIGEON = new CanDeviceId(1, "canivore1");
+	public static final int PIGEON = 1;
 	
-	public static final CanDeviceId LEDS = new CanDeviceId(21, "rio");
+	public static final CanDeviceId LEDS = new CanDeviceId(2, "rio");
 
 	/* BEAM BREAK DIO CHANNELS*/
 	public static final int SERIALIZER_BREAK = Constants.isEpsilon ? 7 : 8;

@@ -34,30 +34,30 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 
 	public IntakeDeploy(final ServoMotorSubsystemConstants constants) {
 		super(constants);
-		mMain.setPosition(homeAwareUnitsToRotations(120.0));
-		enableSoftLimits(false);
-		setSetpointMotionMagic(kStowAngle);
+		// mMain.setPosition(homeAwareUnitsToRotations(120.0));
+		// enableSoftLimits(false);
+		// setSetpointMotionMagic(kStowAngle);
 	}
 
 	public void registerEnabledLoops(ILooper enabledLooper) {
-		enabledLooper.register(new Loop() {
-			@Override
-			public void onStart(double timestamp) {}
+		// enabledLooper.register(new Loop() {
+		// 	@Override
+		// 	public void onStart(double timestamp) {}
 
-			@Override
-			public void onLoop(double timestamp) {
-				if (getSetpoint() == mConstants.kHomePosition && atHomingLocation() && mNeedsToHome && !mHoming) {
-					setWantHome(true);
-				} else if (mControlState != ControlState.OPEN_LOOP && mHoming) {
-					setWantHome(false);
-				}
-			}
+		// 	@Override
+		// 	public void onLoop(double timestamp) {
+		// 		if (getSetpoint() == mConstants.kHomePosition && atHomingLocation() && mNeedsToHome && !mHoming) {
+		// 			setWantHome(true);
+		// 		} else if (mControlState != ControlState.OPEN_LOOP && mHoming) {
+		// 			setWantHome(false);
+		// 		}
+		// 	}
 
-			@Override
-			public void onStop(double timestamp) {
-				setNeutralMode(NeutralModeValue.Brake);
-			}
-		});
+		// 	@Override
+		// 	public void onStop(double timestamp) {
+		// 		setNeutralMode(NeutralModeValue.Brake);
+		// 	}
+		// });
 	}
 
 	/**
@@ -74,19 +74,19 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 
 	@Override
 	public synchronized void writePeriodicOutputs() {
-		if (mHoming) {
-			setOpenLoop(Constants.IntakeDeployConstants.kHomingOutput / mConstants.kMaxForwardOutput);
-			if (mHomingDelay.update(
-					Timer.getFPGATimestamp(),
-					Math.abs(getVelocity()) < Constants.IntakeDeployConstants.kHomingVelocityWindow)) {
-				zeroSensors();
-				mHasBeenZeroed = true;
-				setSetpointMotionMagic(mConstants.kHomePosition);
-				mHoming = false;
-			}
-		}
+		// if (mHoming) {
+		// 	setOpenLoop(Constants.IntakeDeployConstants.kHomingOutput / mConstants.kMaxForwardOutput);
+		// 	if (mHomingDelay.update(
+		// 			Timer.getFPGATimestamp(),
+		// 			Math.abs(getVelocity()) < Constants.IntakeDeployConstants.kHomingVelocityWindow)) {
+		// 		zeroSensors();
+		// 		mHasBeenZeroed = true;
+		// 		setSetpointMotionMagic(mConstants.kHomePosition);
+		// 		mHoming = false;
+		// 	}
+		// }
 
-		super.writePeriodicOutputs();
+		// super.writePeriodicOutputs();
 	}
 
 	@Override

@@ -125,8 +125,8 @@ public class Constants {
 		/*** MODULE SPECIFIC CONSTANTS ***/
 		/* Front Left Module - Module 0 */
 		public static final class Mod0 {
-			public static final double compAngleOffset = 99.5;
-			public static final double epsilonAngleOffset = 0.87;
+			public static final double compAngleOffset = -0.333251953125;
+			public static final double epsilonAngleOffset = -0.333251953125;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -138,8 +138,8 @@ public class Constants {
 
 		/* Front Right Module - Module 1 */
 		public static final class Mod1 {
-			public static final double compAngleOffset = 254.880;
-			public static final double epsilonAngleOffset = 67.68;
+			public static final double compAngleOffset = -0.45068359375;
+			public static final double epsilonAngleOffset = -0.45068359375;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -151,8 +151,8 @@ public class Constants {
 
 		/* Back Left Module - Module 2 */
 		public static final class Mod2 {
-			public static final double compAngleOffset = 180.0;
-			public static final double epsilonAngleOffset = 46.8;
+			public static final double compAngleOffset = -0.637451171875;
+			public static final double epsilonAngleOffset = -0.637451171875;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
@@ -164,8 +164,8 @@ public class Constants {
 
 		/* Back Right Module - Module 3 */
 		public static final class Mod3 {
-			public static final double compAngleOffset = 181.5822;
-			public static final double epsilonAngleOffset = 61.56;
+			public static final double compAngleOffset = 0.425537109375;
+			public static final double epsilonAngleOffset = 0.425537109375;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
