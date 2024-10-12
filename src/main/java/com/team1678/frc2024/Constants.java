@@ -259,21 +259,21 @@ public class Constants {
 			kDeployServoConstants.kMainConstants.id = Ports.INTAKE_PIVOT;
 			kDeployServoConstants.kMainConstants.counterClockwisePositive = false;
 
-			kDeployServoConstants.kHomePosition = 128.1; // degrees
-			kDeployServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * (45.0 / 1.0);
-
 			kDeployServoConstants.kMaxUnitsLimit = 128.1;
 			kDeployServoConstants.kMinUnitsLimit = 0.0;
 
-			kDeployServoConstants.kKp = 3.0;
+			kDeployServoConstants.kHomePosition = 128.1; // degrees
+			kDeployServoConstants.kRotationsPerUnitDistance = 0.8374 / (kDeployServoConstants.kMaxUnitsLimit - kDeployServoConstants.kMinUnitsLimit);
+
+			kDeployServoConstants.kKp = 40.0;
 			kDeployServoConstants.kKi = 0.0;
 			kDeployServoConstants.kKd = 0.0;
 			kDeployServoConstants.kKa = 0.0;
-			kDeployServoConstants.kKs = 0.2;
-			kDeployServoConstants.kKg = 0.2;
+			kDeployServoConstants.kKs = 0.0;
+			kDeployServoConstants.kKg = 0.0;
 
-			kDeployServoConstants.kCruiseVelocity = 400.0; // degrees / s
-			kDeployServoConstants.kAcceleration = 10000.0; // degrees / s^2
+			kDeployServoConstants.kCruiseVelocity = 1.5 * kDeployServoConstants.kRotationsPerUnitDistance;
+			kDeployServoConstants.kAcceleration = 20.0 * kDeployServoConstants.kRotationsPerUnitDistance;
 
 			kDeployServoConstants.kMaxForwardOutput = 12.0;
 			kDeployServoConstants.kMaxReverseOutput = -12.0;
