@@ -57,9 +57,9 @@ public class Ports {
 	public static final CanDeviceId LEDS = new CanDeviceId(2, "rio");
 
 	/* BEAM BREAK DIO CHANNELS*/
-	public static final int SERIALIZER_BREAK = Constants.isEpsilon ? 7 : 8;
-	public static final int FEEDER_BREAK = Constants.isEpsilon ? 8 : 7;
-	public static final int AMP_BREAK = 9; 
+	public static final int SERIALIZER_BREAK = 1;
+	public static final int FEEDER_BREAK = 2;
+	public static final int AMP_BREAK = 3; 
 
 	/* LINEAR SERVO PWM CHANNELS */
 	public static final int CLIMBER_LINEAR_ACTUATOR = 9;

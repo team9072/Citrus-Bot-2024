@@ -23,7 +23,6 @@ import java.util.function.BooleanSupplier;
 public class Constants {
 
 	public static boolean isComp;
-	public static boolean isEpsilon;
 
 	public static BooleanSupplier isCompSupplier() {
 		return () -> isComp;
@@ -58,7 +57,7 @@ public class Constants {
 		public static final double wheelDiameter = Units.inchesToMeters(4.00);
 		public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-		public static final double driveGearRatio = Constants.isEpsilon ? 5.82 : 5.82;
+		public static final double driveGearRatio = 5.82;
 		public static final double angleGearRatio = (150.0 / 7.0);
 
 		public static final Translation2d[] swerveModuleLocations = {
@@ -126,52 +125,48 @@ public class Constants {
 		/* Front Left Module - Module 0 */
 		public static final class Mod0 {
 			public static final double compAngleOffset = -0.333251953125;
-			public static final double epsilonAngleOffset = -0.333251953125;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
 						Ports.FL_DRIVE.getDeviceNumber(),
 						Ports.FL_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						compAngleOffset);
 			}
 		}
 
 		/* Front Right Module - Module 1 */
 		public static final class Mod1 {
 			public static final double compAngleOffset = -0.45068359375;
-			public static final double epsilonAngleOffset = -0.45068359375;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
 						Ports.FR_DRIVE.getDeviceNumber(),
 						Ports.FR_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						compAngleOffset);
 			}
 		}
 
 		/* Back Left Module - Module 2 */
 		public static final class Mod2 {
 			public static final double compAngleOffset = -0.637451171875;
-			public static final double epsilonAngleOffset = -0.637451171875;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
 						Ports.BL_DRIVE.getDeviceNumber(),
 						Ports.BL_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						compAngleOffset);
 			}
 		}
 
 		/* Back Right Module - Module 3 */
 		public static final class Mod3 {
 			public static final double compAngleOffset = 0.425537109375;
-			public static final double epsilonAngleOffset = 0.425537109375;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
 						Ports.BR_DRIVE.getDeviceNumber(),
 						Ports.BR_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						compAngleOffset);
 			}
 		}
 
@@ -412,12 +407,10 @@ public class Constants {
 
 	public static final class ShooterConstants {
 		public static final double kCompGearRatio = 1.6;
-		public static final double kEpsilonTopGearRatio = 1.6;
-		public static final double kEpsilonBottomGearRatio = 1.6;
 		public static final double kTopFlywheelVelocityConversion =
-				(60.0) * (isEpsilon ? kEpsilonTopGearRatio : kCompGearRatio) / (1.0);
+				(60.0) * (kCompGearRatio) / (1.0);
 		public static final double kBottomFlywheelVelocityConversion =
-				(60.0) * (isEpsilon ? kEpsilonBottomGearRatio : kCompGearRatio) / (1.0);
+				(60.0) * (kCompGearRatio) / (1.0);
 		public static final double kFlywheelTolerance = 1000;
 
 		public static TalonFXConfiguration ShooterFXConfig() {
@@ -461,7 +454,7 @@ public class Constants {
 
 			kHoodServoConstants.kHomePosition = 15.0; // Degrees
 			kHoodServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * (7.16 / 1.0); // Cancoder to unit distance
-			kHoodServoConstants.kKp = isEpsilon ? 100 : 200;
+			kHoodServoConstants.kKp = 100; // 200
 			kHoodServoConstants.kKi = 0;
 			kHoodServoConstants.kKd = 0.0;
 			kHoodServoConstants.kKg = 0.7;
@@ -491,7 +484,7 @@ public class Constants {
 			kHoodEncoderConstants.encoder_type = FeedbackSensorSourceValue.FusedCANcoder;
 			kHoodEncoderConstants.remote_encoder_port = Ports.HOOD_CANCODER;
 			kHoodEncoderConstants.rotor_rotations_per_output = 314.0;
-			kHoodEncoderConstants.remote_encoder_offset = isEpsilon ? 0.187 : -0.2861;
+			kHoodEncoderConstants.remote_encoder_offset = 0.415;
 		}
 	}
 
@@ -565,7 +558,7 @@ public class Constants {
 
 		public static final String kName = "limelight";
 		public static final Translation2d kRobotToCameraTranslation = new Translation2d(0.0, 0.0);
-		public static final double kCameraHeightMeters = isEpsilon ? 0.59 : 0.65;
+		public static final double kCameraHeightMeters = 0.65;
 		public static final Rotation2d kCameraPitch = Rotation2d.fromDegrees(-18.0);
 		public static final Rotation2d kCameraYaw = Rotation2d.fromDegrees(0.0);
 

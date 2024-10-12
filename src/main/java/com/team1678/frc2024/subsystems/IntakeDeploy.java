@@ -22,7 +22,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 		return mInstance;
 	}
 
-	public static final double kDeployAngle = Constants.isEpsilon ? 15.0 : 6.5;
+	public static final double kDeployAngle = 6.5; // TODO: Epsilon was 15
 	public static final double kClearAngle = 96.0;
 	public static final double kUnjamAngle = 30.0;
 	public static final double kStowAngle = IntakeDeployConstants.kDeployServoConstants.kHomePosition;

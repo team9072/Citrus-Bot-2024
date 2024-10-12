@@ -97,7 +97,6 @@ public class Robot extends TimedRobot {
 			serial = "";
 		}
 		Constants.isComp = serial.startsWith(Constants.kCompSerial);
-		Constants.isEpsilon = serial.startsWith(Constants.kEpsilonSerial);
 	}
 
 	public Robot() {
@@ -124,9 +123,8 @@ public class Robot extends TimedRobot {
 			LiveWindow.disableAllTelemetry();
 
 			SmartDashboard.putBoolean("Is Comp", Constants.isComp);
-			SmartDashboard.putBoolean("Is Epsilon", Constants.isEpsilon);
 
-			if (!Constants.isComp && !Constants.isEpsilon) {
+			if (!Constants.isComp) {
 				SmartDashboard.putString("Comp Serial", Constants.kCompSerial);
 				SmartDashboard.putString("Epsilon Serial", Constants.kEpsilonSerial);
 				SmartDashboard.putString("Serial Number", serial);
