@@ -7,9 +7,7 @@ import com.team1678.frc2024.Ports;
 import com.team1678.frc2024.loops.ILooper;
 import com.team1678.frc2024.loops.Loop;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder;
-import com.team1678.lib.requests.Request;
 import com.team1678.lib.util.Stopwatch;
-import com.team254.lib.util.Util;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Hood extends ServoMotorSubsystemWithCancoder {
@@ -80,7 +78,7 @@ public class Hood extends ServoMotorSubsystemWithCancoder {
 		SmartDashboard.putBoolean(mConstants.kName + "/homing", mHoming);
 		super.outputTelemetry();
 	}
-	
+
 	/**
 	 * Moves hood relative to current position.
 	 * @param delta Delta from current position to travel, in degrees.

@@ -98,7 +98,7 @@ public class IntakeRollers extends Subsystem {
 
 	/**
 	 * @param _wantedState Wanted state for the intake rollers.
-	 * @return New request that updates the intake rollers with the wanted state. 
+	 * @return New request that updates the intake rollers with the wanted state.
 	 */
 	public Request stateRequest(State _wantedState) {
 		return new Request() {

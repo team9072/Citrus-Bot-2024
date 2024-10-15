@@ -79,7 +79,7 @@ public class AmpRollers extends Subsystem {
 
 	/**
 	 * @param _wantedState Wanted state for the amp rollers.
-	 * @return New request that updates the amp rollers with the wanted state. 
+	 * @return New request that updates the amp rollers with the wanted state.
 	 */
 	public Request stateRequest(State _wantedState) {
 		return new Request() {

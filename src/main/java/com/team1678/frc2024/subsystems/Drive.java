@@ -171,7 +171,7 @@ public class Drive extends Subsystem {
 	/**
 	 * Enable/disables vision heading control.
 	 *
-	 * @param value Whether or not to override rotation joystick with vision target. 
+	 * @param value Whether or not to override rotation joystick with vision target.
 	 */
 	public synchronized void overrideHeading(boolean value) {
 		mOverrideHeading = value;
@@ -301,7 +301,7 @@ public class Drive extends Subsystem {
 
 	/**
 	 * Generate and follow a trajectory from the robot-relative points provided.
-	 * 
+	 *
 	 * @param relativeEndPos End position at relative to the current robot pose.
 	 * @param targetHeading End heading relative to the field.
 	 */
@@ -324,7 +324,7 @@ public class Drive extends Subsystem {
 
 	/**
 	 * Generate and follow a trajectory from the field-relative points provided.
-	 * 
+	 *
 	 * @param fieldRelativeEndPos End position at relative to the field.
 	 * @param targetHeading End heading relative to the field.
 	 */

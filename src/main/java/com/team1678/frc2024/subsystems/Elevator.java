@@ -128,7 +128,6 @@ public class Elevator extends ServoMotorSubsystem {
 		};
 	}
 
-	
 	/**
 	 * @return New reqeust commanding the elevator to extend for Amp scoring.
 	 */
@@ -148,7 +147,6 @@ public class Elevator extends ServoMotorSubsystem {
 		};
 	}
 
-	
 	/**
 	 * @return New reqeust commanding the elevator to retract.
 	 */
