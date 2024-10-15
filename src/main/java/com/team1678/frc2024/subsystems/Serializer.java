@@ -106,7 +106,7 @@ public class Serializer extends Subsystem {
 
 	/**
 	 * @param _wantedState Wanted state for the serializer.
-	 * @return New request that updates the serializer with the wanted state. 
+	 * @return New request that updates the serializer with the wanted state.
 	 */
 	public Request stateRequest(State _wantedState) {
 		return new Request() {

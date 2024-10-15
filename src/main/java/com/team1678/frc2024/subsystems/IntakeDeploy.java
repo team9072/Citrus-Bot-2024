@@ -157,7 +157,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 
 			@Override
 			public boolean isFinished() {
-				return Util.epsilonEquals(getPosition(), kClearAngle, 4.0);
+				return getPosition() < kClearAngle + 4.0;
 			}
 		};
 	}
@@ -174,7 +174,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 
 			@Override
 			public boolean isFinished() {
-				return Util.epsilonEquals(getPosition(), kUnjamAngle, 4.0);
+				return getPosition() < kUnjamAngle + 4.0;
 			}
 		};
 	}
