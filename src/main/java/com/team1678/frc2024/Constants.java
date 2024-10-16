@@ -259,7 +259,7 @@ public class Constants {
 			kDeployServoConstants.kMainConstants.id = Ports.INTAKE_PIVOT;
 			kDeployServoConstants.kMainConstants.counterClockwisePositive = false;
 
-			kDeployServoConstants.kHomePosition = 128.1; // degrees
+			kDeployServoConstants.kHomePosition = 126.7; // degrees
 			kDeployServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * ((4.0 * 4.0 * (48.0 / 28.0) * (18.0 / 12.0)) / 1.0);
 
 			kDeployServoConstants.kMaxUnitsLimit = 128.1;
@@ -512,7 +512,7 @@ public class Constants {
 			kClimberServoConstants.kCruiseVelocity = 0.5; // inches of string length
 			kClimberServoConstants.kAcceleration = 4.0;
 
-			kClimberServoConstants.kMaxUnitsLimit = 0.429 + Conversions.inchesToMeters(3.0);
+			kClimberServoConstants.kMaxUnitsLimit = 0.418 + Conversions.inchesToMeters(3.0);
 			kClimberServoConstants.kMinUnitsLimit = 0.0;
 
 			kClimberServoConstants.kEnableSupplyCurrentLimit = true;
