@@ -1,5 +1,8 @@
 package com.team1678.frc2024.controlboard;
 
+import com.team1678.frc2024.FieldLayout;
+import com.team1678.frc2024.Robot;
+import com.team1678.frc2024.RobotState;
 import com.team1678.frc2024.subsystems.Climber;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Hood;
@@ -7,6 +10,12 @@ import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Superstructure;
 import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+import com.team254.lib.geometry.Pose2d;
+import com.team254.lib.geometry.Rotation2d;
+import com.team254.lib.geometry.Translation2d;
+
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriverControls {
@@ -100,6 +109,15 @@ public class DriverControls {
 				mHood.setWantJog(0.5);
 			} else if (mControlBoard.operator.POV180.isBeingPressed()) {
 				mHood.setWantJog(-0.5);
+			}
+
+			if (mControlBoard.driver.POV90.wasActivated()) {
+				Translation2d target = FieldLayout.handleAllianceFlip(FieldLayout.kSpeakerCenter.getTranslation(), Robot.is_red_alliance);
+				// Distance from speaker face to subwoofer, robot's length / 2
+				Translation2d offset = new Translation2d(Units.inchesToMeters(38.5 + (26.25 / 2.0)), 0.0);
+				target.plus(FieldLayout.handleAllianceFlip(offset, Robot.is_red_alliance));
+
+				RobotState.getInstance().reset(Timer.getFPGATimestamp(), new Pose2d(target, new Rotation2d()));
 			}
 
 			if (mControlBoard.operator.rightTrigger.longPressed()) {
