@@ -112,12 +112,12 @@ public class DriverControls {
 			}
 
 			if (mControlBoard.driver.POV90.wasActivated()) {
-				Translation2d target = FieldLayout.handleAllianceFlip(FieldLayout.kSpeakerCenter.getTranslation(), Robot.is_red_alliance);
+				Translation2d speaker = new Translation2d(0.0, FieldLayout.kSpeakerCenter.getTranslation().y());
 				// Distance from speaker face to subwoofer, robot's length / 2
 				Translation2d offset = new Translation2d(Units.inchesToMeters(38.5 + (26.25 / 2.0)), 0.0);
-				target.plus(FieldLayout.handleAllianceFlip(offset, Robot.is_red_alliance));
+				Translation2d pos = FieldLayout.handleAllianceFlip(speaker.plus(offset), Robot.is_red_alliance);
 
-				RobotState.getInstance().reset(Timer.getFPGATimestamp(), new Pose2d(target, new Rotation2d()));
+				RobotState.getInstance().reset(Timer.getFPGATimestamp(), new Pose2d(pos, new Rotation2d()));
 			}
 
 			if (mControlBoard.operator.rightTrigger.longPressed()) {
