@@ -36,6 +36,9 @@ public class DriverControls {
 		if (!mClimbMode) {
 			mSuperstructure.setWantClimbMode(false);
 			if (mControlBoard.getEnterClimbModeDriver()) {
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
+
 				mClimbMode = true;
 				top_buttons_clear = false;
 				mSuperstructure.tuckState();
@@ -151,6 +154,8 @@ public class DriverControls {
 
 			if (mControlBoard.getExitClimbModeDriver()) {
 				mClimbMode = false;
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
 				return;
 			}
 
