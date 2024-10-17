@@ -7,7 +7,6 @@ import com.team1678.lib.Util;
 import com.team1678.lib.logger.LogUtil;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Translation2d;
-
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Pose3d;
@@ -15,7 +14,6 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.List;
 import java.util.Optional;
-
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
@@ -38,10 +36,7 @@ public class PhotonVisionDevice extends VisionDevice {
 		m_constants = constants;
 		m_camera = new PhotonCamera(m_constants.cameraName);
 		m_poseEstimator = new PhotonPoseEstimator(
-				tagLayout,
-				PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR,
-				m_camera,
-				m_constants.robotToCamera);
+				tagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, m_camera, m_constants.robotToCamera);
 	}
 
 	@Override

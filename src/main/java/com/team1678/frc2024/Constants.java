@@ -539,7 +539,10 @@ public class Constants {
 								Conversions.inchesToMeters(6.25),
 								Conversions.inchesToMeters(24.0)),
 						// Invert pitch beacuse yaw and roll are 180 degrees
-						new Rotation3d(Units.degreesToRadians(kCameraRoll), Units.degreesToRadians(-kCameraPitch), Units.degreesToRadians(180 + kRelativeCameraYaw))));
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 + kRelativeCameraYaw))));
 
 		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
 				"Starboard (BW3)",
@@ -549,7 +552,10 @@ public class Constants {
 								Conversions.inchesToMeters(-7.75),
 								Conversions.inchesToMeters(24.0)),
 						// See comment on port camera Rotation3d
-						new Rotation3d(Units.degreesToRadians(kCameraRoll), Units.degreesToRadians(-kCameraPitch), Units.degreesToRadians(180 - kRelativeCameraYaw))));
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 - kRelativeCameraYaw))));
 	}
 
 	public static final class LinearServoConstants {
