@@ -13,7 +13,6 @@ import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
-
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -112,7 +111,8 @@ public class DriverControls {
 			}
 
 			if (mControlBoard.driver.POV90.wasActivated()) {
-				Translation2d speaker = new Translation2d(0.0, FieldLayout.kSpeakerCenter.getTranslation().y());
+				Translation2d speaker = new Translation2d(
+						0.0, FieldLayout.kSpeakerCenter.getTranslation().y());
 				// Distance from speaker face to subwoofer, robot's length / 2
 				Translation2d offset = new Translation2d(Units.inchesToMeters(35.5 + (32 / 2.0)), 0.0);
 				Translation2d pos = FieldLayout.handleAllianceFlip(speaker.plus(offset), Robot.is_red_alliance);
@@ -138,7 +138,6 @@ public class DriverControls {
 				System.out.println("Homing Hood!");
 				mHood.setWantHome(true);
 			}
-			
 
 		} else {
 			mSuperstructure.setWantClimbMode(true);

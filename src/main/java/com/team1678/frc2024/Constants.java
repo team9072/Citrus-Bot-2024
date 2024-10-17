@@ -12,11 +12,15 @@ import com.team1678.frc2024.subsystems.limelight.GoalTracker;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
+import com.team1678.frc2024.subsystems.vision.PhotonVisionDevice.CameraConstants;
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import java.util.function.BooleanSupplier;
 
@@ -128,9 +132,7 @@ public class Constants {
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.FL_DRIVE.getDeviceNumber(),
-						Ports.FL_ROTATION.getDeviceNumber(),
-						compAngleOffset);
+						Ports.FL_DRIVE.getDeviceNumber(), Ports.FL_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
@@ -140,9 +142,7 @@ public class Constants {
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.FR_DRIVE.getDeviceNumber(),
-						Ports.FR_ROTATION.getDeviceNumber(),
-						compAngleOffset);
+						Ports.FR_DRIVE.getDeviceNumber(), Ports.FR_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
@@ -152,9 +152,7 @@ public class Constants {
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.BL_DRIVE.getDeviceNumber(),
-						Ports.BL_ROTATION.getDeviceNumber(),
-						compAngleOffset);
+						Ports.BL_DRIVE.getDeviceNumber(), Ports.BL_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
@@ -164,9 +162,7 @@ public class Constants {
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.BR_DRIVE.getDeviceNumber(),
-						Ports.BR_ROTATION.getDeviceNumber(),
-						compAngleOffset);
+						Ports.BR_DRIVE.getDeviceNumber(), Ports.BR_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
@@ -260,7 +256,8 @@ public class Constants {
 			kDeployServoConstants.kMainConstants.counterClockwisePositive = false;
 
 			kDeployServoConstants.kHomePosition = 126.7; // degrees
-			kDeployServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * ((4.0 * 4.0 * (48.0 / 28.0) * (18.0 / 12.0)) / 1.0);
+			kDeployServoConstants.kRotationsPerUnitDistance =
+					(1.0 / 360.0) * ((4.0 * 4.0 * (48.0 / 28.0) * (18.0 / 12.0)) / 1.0);
 
 			kDeployServoConstants.kMaxUnitsLimit = 128.1;
 			kDeployServoConstants.kMinUnitsLimit = 0.0;
@@ -407,10 +404,8 @@ public class Constants {
 
 	public static final class ShooterConstants {
 		public static final double kCompGearRatio = 1.6;
-		public static final double kTopFlywheelVelocityConversion =
-				(60.0) * (kCompGearRatio) / (1.0);
-		public static final double kBottomFlywheelVelocityConversion =
-				(60.0) * (kCompGearRatio) / (1.0);
+		public static final double kTopFlywheelVelocityConversion = (60.0) * (kCompGearRatio) / (1.0);
+		public static final double kBottomFlywheelVelocityConversion = (60.0) * (kCompGearRatio) / (1.0);
 		public static final double kFlywheelTolerance = 1000;
 
 		public static TalonFXConfiguration ShooterFXConfig() {
@@ -525,6 +520,29 @@ public class Constants {
 
 			kClimberServoConstants.kNeutralMode = NeutralModeValue.Brake;
 		}
+	}
+	/**
+	 * For standard deviations:
+	 * Lower = trust more, higher = trust less
+	 */
+	public static final class PhotonVisionConstants {
+		public static CameraConstants kPortCameraSettings = new CameraConstants(
+				"Port Camera",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097),
+								Conversions.inchesToMeters(7.75),
+								Conversions.inchesToMeters(24.0)),
+						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
+
+		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
+				"Starboard Camera",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097),
+								Conversions.inchesToMeters(6.71),
+								Conversions.inchesToMeters(24.0)),
+						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
 	}
 
 	/*

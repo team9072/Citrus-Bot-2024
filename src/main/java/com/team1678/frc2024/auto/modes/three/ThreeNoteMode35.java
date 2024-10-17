@@ -24,7 +24,7 @@ import java.util.List;
 public class ThreeNoteMode35 extends AutoModeBase {
 	private Drive d = Drive.getInstance();
 	private Superstructure s = Superstructure.getInstance();
-	//private Limelight n = Limelight.getInstance();
+	// private Limelight n = Limelight.getInstance();
 
 	Trajectory<TimedState<Pose2dWithMotion>> startToN3Pickup;
 	Trajectory<TimedState<Pose2dWithMotion>> N5PickupToNearShot;

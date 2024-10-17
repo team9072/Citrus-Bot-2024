@@ -1,19 +1,10 @@
 package com.team1678.frc2024.subsystems;
 
 import com.ctre.phoenix.led.CANdle;
-import com.ctre.phoenix.led.CANdle.LEDStripType;
-import com.ctre.phoenix.led.CANdle.VBatOutputMode;
-import com.ctre.phoenix.led.CANdleConfiguration;
-import com.ctre.phoenix.led.CANdleControlFrame;
-import com.ctre.phoenix.led.CANdleStatusFrame;
-import com.team1678.frc2024.Constants;
 import com.team1678.frc2024.Ports;
-import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.led.Color;
 import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
-import com.team1678.frc2024.loops.Loop;
-import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.requests.Request;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -50,23 +41,23 @@ public class LEDs extends Subsystem {
 
 	@Override
 	public void registerEnabledLoops(ILooper mEnabledLooper) {
-	// 	mEnabledLooper.register(new Loop() {
-	// 		@Override
-	// 		public void onStart(double timestamp) {
-	// 			mDisabled = false;
-	// 			applyStates(TimedLEDState.OFF);
-	// 		}
+		// 	mEnabledLooper.register(new Loop() {
+		// 		@Override
+		// 		public void onStart(double timestamp) {
+		// 			mDisabled = false;
+		// 			applyStates(TimedLEDState.OFF);
+		// 		}
 
-	// 		@Override
-	// 		public void onLoop(double timestamp) {}
+		// 		@Override
+		// 		public void onLoop(double timestamp) {}
 
-	// 		@Override
-	// 		public void onStop(double timestamp) {
-	// 			mDisabled = true;
-	// 			mLEDStatus.reset();
-	// 			applyStates(TimedLEDState.DISABLE_BLUE);
-	// 		}
-	// 	});
+		// 		@Override
+		// 		public void onStop(double timestamp) {
+		// 			mDisabled = true;
+		// 			mLEDStatus.reset();
+		// 			applyStates(TimedLEDState.DISABLE_BLUE);
+		// 		}
+		// 	});
 	}
 
 	@Override
