@@ -531,7 +531,7 @@ public class Constants {
 								Conversions.inchesToMeters(4.097),
 								Conversions.inchesToMeters(7.75),
 								Conversions.inchesToMeters(24.0)),
-						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
+						new Rotation3d(0.0, Units.degreesToRadians(-15.0), Units.degreesToRadians(19.0))));
 
 		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
 				"Starboard (BW3)",
@@ -540,7 +540,7 @@ public class Constants {
 								Conversions.inchesToMeters(4.097),
 								Conversions.inchesToMeters(6.71),
 								Conversions.inchesToMeters(24.0)),
-						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
+						new Rotation3d(0.0, Units.degreesToRadians(-15.0), Units.degreesToRadians(19.0))));
 	}
 
 	public static final class LinearServoConstants {
