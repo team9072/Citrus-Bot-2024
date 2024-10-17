@@ -15,8 +15,6 @@ import com.team1678.frc2024.paths.TrajectoryGenerator;
 import com.team1678.frc2024.paths.TrajectoryGenerator.TrajectorySet;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Superstructure;
-import com.team1678.frc2024.subsystems.limelight.Limelight;
-import com.team1678.frc2024.subsystems.limelight.Limelight.NotePosition;
 import com.team254.lib.geometry.Pose2dWithMotion;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.trajectory.Trajectory;
@@ -26,7 +24,6 @@ import java.util.List;
 public class ThreeNoteMode45 extends AutoModeBase {
 	private Drive d = Drive.getInstance();
 	private Superstructure s = Superstructure.getInstance();
-	private Limelight n = Limelight.getInstance();
 
 	Trajectory<TimedState<Pose2dWithMotion>> startToN4Pickup;
 	Trajectory<TimedState<Pose2dWithMotion>> N4PickupToFarShot;
@@ -77,7 +74,7 @@ public class ThreeNoteMode45 extends AutoModeBase {
 		runAction(new LambdaAction(() -> s.fireState()));
 		runAction(new WaitForSuperstructureAction(0.3));
 
-		boolean hasN5 = n.hasNote(NotePosition.N5);
+		boolean hasN5 = true;
 
 		runAction(new ParallelAction(List.of(
 				new SwerveTrajectoryAction(hasN5 ? shotToN5Pickup : shotToN3Pickup, false),

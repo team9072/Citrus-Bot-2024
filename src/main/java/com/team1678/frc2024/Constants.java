@@ -8,7 +8,6 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.team1678.frc2024.subsystems.Drive.KinematicLimits;
-import com.team1678.frc2024.subsystems.limelight.GoalTracker;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
@@ -599,30 +598,5 @@ public class Constants {
 	public static final class LinearServoConstants {
 		public static final int kMaxVelocity = 32; // mm/s
 		public static final int kMaxLength = 50; // mm
-	}
-
-	public static final class LimelightConstants {
-
-		public static final double kNoteHeight = 0.0508;
-		public static final double kNoteTargetOffset = 0.2;
-		public static final double kMaxNoteTrackingDistance = 6.75;
-		public static final double kNoteTrackEpsilon = 1.0;
-
-		public static final String kName = "limelight";
-		public static final Translation2d kRobotToCameraTranslation = new Translation2d(0.0, 0.0);
-		public static final double kCameraHeightMeters = isEpsilon ? 0.59 : 0.65;
-		public static final Rotation2d kCameraPitch = Rotation2d.fromDegrees(-18.0);
-		public static final Rotation2d kCameraYaw = Rotation2d.fromDegrees(0.0);
-
-		public static final GoalTracker.Configuration kNoteTrackerConstants = new GoalTracker.Configuration();
-
-		static {
-			kNoteTrackerConstants.kMaxTrackerDistance = 0.46;
-			kNoteTrackerConstants.kMaxGoalTrackAge = 0.5;
-			kNoteTrackerConstants.kCameraFrameRate = 30.0;
-			kNoteTrackerConstants.kStabilityWeight = 1.0;
-			kNoteTrackerConstants.kAgeWeight = 0.2;
-			kNoteTrackerConstants.kSwitchingWeight = 0.2;
-		}
 	}
 }
