@@ -115,7 +115,7 @@ public class PhotonVisionDevice extends VisionDevice {
 	}
 
 	@Override
-	boolean isConnected() {
+	public boolean isConnected() {
 		return isConnected;
 	}
 

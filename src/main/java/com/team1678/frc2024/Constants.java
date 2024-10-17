@@ -532,23 +532,6 @@ public class Constants {
 		}
 	}
 
-	/*
-	public static VisionDeviceConstants kLeftVisionDevice = new VisionDeviceConstants(); // dot 13
-	public static VisionDeviceConstants kRightVisionDevice = new VisionDeviceConstants(); // dot 12
-
-	static {
-		kLeftVisionDevice.kTableName = "PolarisLeft";
-		kLeftVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(7.325)),
-				Rotation2d.fromDegrees(-27));
-
-		kRightVisionDevice.kTableName = "PolarisRight";
-		kRightVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(-7.325)),
-				Rotation2d.fromDegrees(27.0));
-	}
-	*/
-
 	public static final class LinearServoConstants {
 		public static final int kMaxVelocity = 32; // mm/s
 		public static final int kMaxLength = 50; // mm
