@@ -11,10 +11,14 @@ import com.team1678.frc2024.subsystems.Drive.KinematicLimits;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
+import com.team1678.frc2024.subsystems.vision.PhotonVisionDevice.CameraConstants;
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
 import com.team254.lib.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import java.util.function.BooleanSupplier;
 
@@ -514,6 +518,44 @@ public class Constants {
 
 			kClimberServoConstants.kNeutralMode = NeutralModeValue.Brake;
 		}
+	}
+	/**
+	 * For standard deviations:
+	 * Lower = trust more, higher = trust less
+	 */
+	public static final class PhotonVisionConstants {
+		// Normal (but is inverted later because 3d rotations are silly)
+		public static double kCameraPitch = -15;
+		// Cameras are upside down
+		public static double kCameraRoll = 180;
+		// Mirrored per camera, cameras are also backwards, so 180 degrees are added later
+		public static double kRelativeCameraYaw = 19;
+
+		public static CameraConstants kPortCameraSettings = new CameraConstants(
+				"Port (BW1)",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097),
+								Conversions.inchesToMeters(6.25),
+								Conversions.inchesToMeters(24.0)),
+						// Invert pitch beacuse yaw and roll are 180 degrees
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 + kRelativeCameraYaw))));
+
+		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
+				"Starboard (BW3)",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097),
+								Conversions.inchesToMeters(-7.75),
+								Conversions.inchesToMeters(24.0)),
+						// See comment on port camera Rotation3d
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 - kRelativeCameraYaw))));
 	}
 
 	public static final class LinearServoConstants {
