@@ -94,6 +94,10 @@ public class Drive extends Subsystem {
 		mWheelTracker = new WheelTracker(mModules);
 	}
 
+	public WheelTracker getWheelTracker() {
+		return mWheelTracker;
+	}
+
 	public void setKinematicLimits(KinematicLimits newLimits) {
 		this.mKinematicLimits = newLimits;
 	}
@@ -245,6 +249,7 @@ public class Drive extends Subsystem {
 									mWheelTracker.getRobotPose(),
 									mPeriodicIO.measured_velocity,
 									mPeriodicIO.predicted_velocity);
+					System.out.println(mWheelTracker.getRobotPose());
 				}
 			}
 
