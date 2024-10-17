@@ -74,9 +74,6 @@ public class Robot extends TimedRobot {
 	// vision
 	private final VisionDeviceManager mVisionDevices = VisionDeviceManager.getInstance();
 
-	// limelight
-	//private final Limelight mLimelight = Limelight.getInstance();
-
 	// enabled and disabled loopers
 	private final Looper mEnabledLooper = new Looper();
 	private final Looper mDisabledLooper = new Looper();
@@ -160,8 +157,7 @@ public class Robot extends TimedRobot {
 				mHood,
 				mClimber,
 				mLEDs,
-				mVisionDevices/*,
-				mLimelight*/
+				mVisionDevices
 			);
 			// spotless:on
 
@@ -218,7 +214,6 @@ public class Robot extends TimedRobot {
 			mSuperstructure.tuckState();
 			mSuperstructure.idleState();
 
-			//mLimelight.setPipeline(Pipeline.TELEOP);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
@@ -274,7 +269,6 @@ public class Robot extends TimedRobot {
 		mAutoModeSelector.reset();
 		mAutoModeSelector.updateModeCreator(false);
 		mAutoModeExecutor = new AutoModeExecutor();
-		//mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
 	}
 
 	@Override
@@ -301,7 +295,6 @@ public class Robot extends TimedRobot {
 			if (alliance_changed) {
 				System.out.println("Alliance changed! Requesting trajectory regeneration!");
 				TrajectoryGenerator.getInstance().forceRegenerateTrajectories(is_red_alliance);
-				//mLimelight.setPipeline(is_red_alliance ? Pipeline.AUTO_RED : Pipeline.AUTO_BLUE);
 			}
 
 			mAutoModeSelector.updateModeCreator(alliance_changed);
