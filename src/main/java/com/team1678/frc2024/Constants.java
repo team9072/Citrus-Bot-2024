@@ -8,7 +8,6 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.team1678.frc2024.subsystems.Drive.KinematicLimits;
-import com.team1678.frc2024.subsystems.limelight.GoalTracker;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
@@ -16,7 +15,6 @@ import com.team1678.frc2024.subsystems.vision.PhotonVisionDevice.CameraConstants
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
-import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
@@ -545,50 +543,8 @@ public class Constants {
 						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
 	}
 
-	/*
-	public static VisionDeviceConstants kLeftVisionDevice = new VisionDeviceConstants(); // dot 13
-	public static VisionDeviceConstants kRightVisionDevice = new VisionDeviceConstants(); // dot 12
-
-	static {
-		kLeftVisionDevice.kTableName = "PolarisLeft";
-		kLeftVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(7.325)),
-				Rotation2d.fromDegrees(-27));
-
-		kRightVisionDevice.kTableName = "PolarisRight";
-		kRightVisionDevice.kRobotToCamera = new com.team254.lib.geometry.Transform2d(
-				new Translation2d(Units.inchesToMeters(3.071), Units.inchesToMeters(-7.325)),
-				Rotation2d.fromDegrees(27.0));
-	}
-	*/
-
 	public static final class LinearServoConstants {
 		public static final int kMaxVelocity = 32; // mm/s
 		public static final int kMaxLength = 50; // mm
-	}
-
-	public static final class LimelightConstants {
-
-		public static final double kNoteHeight = 0.0508;
-		public static final double kNoteTargetOffset = 0.2;
-		public static final double kMaxNoteTrackingDistance = 6.75;
-		public static final double kNoteTrackEpsilon = 1.0;
-
-		public static final String kName = "limelight";
-		public static final Translation2d kRobotToCameraTranslation = new Translation2d(0.0, 0.0);
-		public static final double kCameraHeightMeters = 0.65;
-		public static final Rotation2d kCameraPitch = Rotation2d.fromDegrees(-18.0);
-		public static final Rotation2d kCameraYaw = Rotation2d.fromDegrees(0.0);
-
-		public static final GoalTracker.Configuration kNoteTrackerConstants = new GoalTracker.Configuration();
-
-		static {
-			kNoteTrackerConstants.kMaxTrackerDistance = 0.46;
-			kNoteTrackerConstants.kMaxGoalTrackAge = 0.5;
-			kNoteTrackerConstants.kCameraFrameRate = 30.0;
-			kNoteTrackerConstants.kStabilityWeight = 1.0;
-			kNoteTrackerConstants.kAgeWeight = 0.2;
-			kNoteTrackerConstants.kSwitchingWeight = 0.2;
-		}
 	}
 }

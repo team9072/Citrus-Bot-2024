@@ -1,10 +1,11 @@
 package com.team1678.frc2024.subsystems;
 
-import com.ctre.phoenix.led.CANdle;
-import com.team1678.frc2024.Ports;
+import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.led.Color;
 import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
+import com.team1678.frc2024.loops.Loop;
+import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
 import com.team1678.lib.requests.Request;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,68 +23,56 @@ public class LEDs extends Subsystem {
 	private final int kNumLeds = 8 + 18;
 
 	private boolean mDisabled = true;
-	private final CANdle mCandle = new CANdle(Ports.LEDS.getDeviceNumber(), Ports.LEDS.getBus());
 	private LEDSection mLEDStatus = new LEDSection(0, kNumLeds);
 
 	public LEDs() {
-		// CANdleConfiguration configAll = new CANdleConfiguration();
-		// configAll.statusLedOffWhenActive = false;
-		// configAll.disableWhenLOS = true;
-		// configAll.stripType = LEDStripType.RGB;
-		// configAll.brightnessScalar = 1.0;
-		// configAll.vBatOutputMode = VBatOutputMode.Modulated;
-		// mCandle.configAllSettings(configAll, Constants.kLongCANTimeoutMs);
-		// mCandle.setStatusFramePeriod(CANdleStatusFrame.CANdleStatusFrame_Status_1_General, 255);
-		// mCandle.setControlFramePeriod(CANdleControlFrame.CANdle_Control_1_General, 10);
-		// mCandle.setControlFramePeriod(CANdleControlFrame.CANdle_Control_2_ModulatedVBatOut, 255);
-		// applyStates(TimedLEDState.DISABLE_BLUE);
+		applyStates(TimedLEDState.DISABLE_BLUE);
 	}
 
 	@Override
 	public void registerEnabledLoops(ILooper mEnabledLooper) {
-		// 	mEnabledLooper.register(new Loop() {
-		// 		@Override
-		// 		public void onStart(double timestamp) {
-		// 			mDisabled = false;
-		// 			applyStates(TimedLEDState.OFF);
-		// 		}
+		mEnabledLooper.register(new Loop() {
+			@Override
+			public void onStart(double timestamp) {
+				mDisabled = false;
+				applyStates(TimedLEDState.OFF);
+			}
 
-		// 		@Override
-		// 		public void onLoop(double timestamp) {}
+			@Override
+			public void onLoop(double timestamp) {}
 
-		// 		@Override
-		// 		public void onStop(double timestamp) {
-		// 			mDisabled = true;
-		// 			mLEDStatus.reset();
-		// 			applyStates(TimedLEDState.DISABLE_BLUE);
-		// 		}
-		// 	});
+			@Override
+			public void onStop(double timestamp) {
+				mDisabled = true;
+				mLEDStatus.reset();
+				applyStates(TimedLEDState.DISABLE_BLUE);
+			}
+		});
 	}
 
 	@Override
 	public void readPeriodicInputs() {
-		// if (mDisabled) {
-		// 	if (!VisionDeviceManager.getInstance().fullyConnected()) {
-		// 		applyStates(TimedLEDState.NO_VISION);
-		// 	} else {
-		// 		if (Robot.is_red_alliance) {
-		// 			applyStates(TimedLEDState.DISABLE_RED);
-		// 		} else {
-		// 			applyStates(TimedLEDState.DISABLE_BLUE);
-		// 		}
-		// 	}
-		// }
+		if (mDisabled) {
+			if (!VisionDeviceManager.getInstance().fullyConnected()) {
+				applyStates(TimedLEDState.NO_VISION);
+			} else {
+				if (Robot.is_red_alliance) {
+					applyStates(TimedLEDState.DISABLE_RED);
+				} else {
+					applyStates(TimedLEDState.DISABLE_BLUE);
+				}
+			}
+		}
 
-		// double timestamp = Timer.getFPGATimestamp();
-		// if (mLEDStatus.state.interval != Double.POSITIVE_INFINITY) {
-		// 	if (timestamp - mLEDStatus.lastSwitchTime >= mLEDStatus.state.interval) {
-		// 		mLEDStatus.nextColor();
-		// 		mLEDStatus.lastSwitchTime = timestamp;
-		// 	}
-		// }
+		double timestamp = Timer.getFPGATimestamp();
+		if (mLEDStatus.state.interval != Double.POSITIVE_INFINITY) {
+			if (timestamp - mLEDStatus.lastSwitchTime >= mLEDStatus.state.interval) {
+				mLEDStatus.nextColor();
+				mLEDStatus.lastSwitchTime = timestamp;
+			}
+		}
 
-		// Color color = mLEDStatus.getWantedColor();
-		// mCandle.setLEDs(color.r, color.g, color.b, 0, mLEDStatus.startIDx, 100);
+		Color color = mLEDStatus.getWantedColor();
 	}
 
 	// setter functions
