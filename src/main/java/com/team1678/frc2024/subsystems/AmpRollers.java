@@ -104,7 +104,7 @@ public class AmpRollers extends Subsystem {
 
 	@Override
 	public void writePeriodicOutputs() {
-		mFeeder.setControl(new VoltageOut(mPeriodicIO.demand));
+		mFeeder.setControl(new VoltageOut(mPeriodicIO.demand).withEnableFOC(false));
 	}
 
 	@Override

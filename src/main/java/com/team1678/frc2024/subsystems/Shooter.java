@@ -79,8 +79,8 @@ public class Shooter extends Subsystem {
 	public void writePeriodicOutputs() {
 		if (mIsOpenLoop) {
 			// set shooter to open loop to avoid hard slowdown
-			mTopFX.setControl(mRequest.withOutput(mPeriodicIO.top_demand));
-			mBottomFX.setControl(mRequest.withOutput(mPeriodicIO.bottom_demand));
+			mTopFX.setControl(mRequest.withOutput(mPeriodicIO.top_demand).withEnableFOC(false));
+			mBottomFX.setControl(mRequest.withOutput(mPeriodicIO.bottom_demand).withEnableFOC(false));
 		} else {
 			mTopFX.setControl(new VelocityVoltage(
 							mPeriodicIO.top_demand / Constants.ShooterConstants.kTopFlywheelVelocityConversion)

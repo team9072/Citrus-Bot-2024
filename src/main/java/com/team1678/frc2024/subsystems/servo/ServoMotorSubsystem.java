@@ -387,11 +387,11 @@ public abstract class ServoMotorSubsystem extends Subsystem {
 	@Override
 	public synchronized void writePeriodicOutputs() {
 		if (mControlState == ControlState.MOTION_MAGIC) {
-			mMain.setControl(new MotionMagicVoltage(mPeriodicIO.demand).withSlot(kMotionMagicSlot));
+			mMain.setControl(new MotionMagicVoltage(mPeriodicIO.demand).withSlot(kMotionMagicSlot).withEnableFOC(false));
 		} else if (mControlState == ControlState.POSITION_PID) {
-			mMain.setControl(new PositionDutyCycle(mPeriodicIO.demand).withSlot(kPositionPIDSlot));
+			mMain.setControl(new PositionDutyCycle(mPeriodicIO.demand).withSlot(kPositionPIDSlot).withEnableFOC(false));
 		} else {
-			mMain.setControl(new DutyCycleOut(mPeriodicIO.demand));
+			mMain.setControl(new DutyCycleOut(mPeriodicIO.demand).withEnableFOC(false));
 		}
 	}
 

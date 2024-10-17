@@ -123,7 +123,7 @@ public class IntakeRollers extends Subsystem {
 
 	@Override
 	public void writePeriodicOutputs() {
-		mRoller.setControl(new VoltageOut(mPeriodicIO.roller_demand));
+		mRoller.setControl(new VoltageOut(mPeriodicIO.roller_demand).withEnableFOC(false));
 	}
 
 	@Override

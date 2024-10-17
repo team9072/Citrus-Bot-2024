@@ -103,7 +103,7 @@ public class Feeder extends Subsystem {
 	@Override
 	public void writePeriodicOutputs() {
 		mFeeder.setControl(
-				new VelocityVoltage(mPeriodicIO.demand / Constants.FeederConstants.kFeederVelocityConversion));
+				new VelocityVoltage(mPeriodicIO.demand / Constants.FeederConstants.kFeederVelocityConversion).withEnableFOC(false));
 	}
 
 	@Override

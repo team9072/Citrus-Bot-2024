@@ -131,7 +131,7 @@ public class Serializer extends Subsystem {
 
 	@Override
 	public void writePeriodicOutputs() {
-		mRoller.setControl(new VoltageOut(mPeriodicIO.demand));
+		mRoller.setControl(new VoltageOut(mPeriodicIO.demand).withEnableFOC(false));
 	}
 
 	@Override
