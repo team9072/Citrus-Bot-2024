@@ -16,8 +16,8 @@ public class Climber extends ServoMotorSubsystem {
 		return mInstance;
 	}
 
-	public static final double kExtensionHeight = 0.487;
-	public static final double kPrepHeight = 0.306;
+	public static final double kExtensionHeight = 0.418;
+	public static final double kPrepHeight = 0.280;
 	public static final double kPullHeight = 0.02;
 	public static final double kRetractionHeight = 0.0;
 
