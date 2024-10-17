@@ -17,8 +17,6 @@ import edu.wpi.first.math.estimator.ExtendedKalmanFilter;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N2;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-
 import java.util.Map;
 import java.util.Optional;
 

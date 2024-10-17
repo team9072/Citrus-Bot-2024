@@ -6,6 +6,7 @@ import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.team1678.frc2024.Constants;
 import com.team1678.frc2024.Ports;
+import com.team254.lib.drivers.CanDeviceId;
 import com.team254.lib.geometry.Rotation2d;
 
 public class Pigeon {
@@ -28,8 +29,8 @@ public class Pigeon {
 	private Rotation2d rollAdjustmentAngle = new Rotation2d();
 	private Rotation2d pitchAdjustmentAngle = new Rotation2d();
 
-	private Pigeon(int port) {
-		mGyro = new Pigeon2(port, "canivore1");
+	private Pigeon(CanDeviceId canId) {
+		mGyro = new Pigeon2(canId.getDeviceNumber(), canId.getBus());
 		mGyro.getConfigurator().apply(new Pigeon2Configuration());
 	}
 
