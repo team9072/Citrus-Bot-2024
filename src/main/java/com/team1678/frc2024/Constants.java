@@ -525,7 +525,7 @@ public class Constants {
 	 */
 	public static final class PhotonVisionConstants {
 		public static CameraConstants kPortCameraSettings = new CameraConstants(
-				"Port Camera",
+				"Port (BW1)",
 				new Transform3d(
 						new Translation3d(
 								Conversions.inchesToMeters(4.097),
@@ -534,7 +534,7 @@ public class Constants {
 						new Rotation3d(0.0, Units.radiansToDegrees(-15.0), Units.radiansToDegrees(19.0))));
 
 		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
-				"Starboard Camera",
+				"Starboard (BW3)",
 				new Transform3d(
 						new Translation3d(
 								Conversions.inchesToMeters(4.097),
