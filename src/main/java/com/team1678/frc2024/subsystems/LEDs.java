@@ -1,13 +1,5 @@
 package com.team1678.frc2024.subsystems;
 
-import com.ctre.phoenix.led.CANdle;
-import com.ctre.phoenix.led.CANdle.LEDStripType;
-import com.ctre.phoenix.led.CANdle.VBatOutputMode;
-import com.ctre.phoenix.led.CANdleConfiguration;
-import com.ctre.phoenix.led.CANdleControlFrame;
-import com.ctre.phoenix.led.CANdleStatusFrame;
-import com.team1678.frc2024.Constants;
-import com.team1678.frc2024.Ports;
 import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.led.Color;
 import com.team1678.frc2024.led.TimedLEDState;
@@ -31,20 +23,9 @@ public class LEDs extends Subsystem {
 	private final int kNumLeds = 8 + 18;
 
 	private boolean mDisabled = true;
-	private final CANdle mCandle = new CANdle(Ports.LEDS.getDeviceNumber(), Ports.LEDS.getBus());
 	private LEDSection mLEDStatus = new LEDSection(0, kNumLeds);
 
 	public LEDs() {
-		CANdleConfiguration configAll = new CANdleConfiguration();
-		configAll.statusLedOffWhenActive = false;
-		configAll.disableWhenLOS = true;
-		configAll.stripType = LEDStripType.RGB;
-		configAll.brightnessScalar = 1.0;
-		configAll.vBatOutputMode = VBatOutputMode.Modulated;
-		mCandle.configAllSettings(configAll, Constants.kLongCANTimeoutMs);
-		mCandle.setStatusFramePeriod(CANdleStatusFrame.CANdleStatusFrame_Status_1_General, 255);
-		mCandle.setControlFramePeriod(CANdleControlFrame.CANdle_Control_1_General, 10);
-		mCandle.setControlFramePeriod(CANdleControlFrame.CANdle_Control_2_ModulatedVBatOut, 255);
 		applyStates(TimedLEDState.DISABLE_BLUE);
 	}
 
@@ -92,7 +73,6 @@ public class LEDs extends Subsystem {
 		}
 
 		Color color = mLEDStatus.getWantedColor();
-		mCandle.setLEDs(color.r, color.g, color.b, 0, mLEDStatus.startIDx, 100);
 	}
 
 	// setter functions
