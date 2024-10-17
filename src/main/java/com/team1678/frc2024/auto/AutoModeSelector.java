@@ -64,7 +64,7 @@ public class AutoModeSelector {
 		mModeChooser.addOption("Do Nothing", DesiredMode.DO_NOTHING);
 		mModeChooser.setDefaultOption("Semi Fast Six Note", DesiredMode.SEMI_FAST_SIX_NOTE_MODE);
 		mModeChooser.setDefaultOption("13 Semi Fast Six Note", DesiredMode.ONE_THREE_SEMI_FAST_SIX_NOTE_MODE);
-		mModeChooser.addOption("Three Note 4/5 + Limelight", DesiredMode.THREE_NOTE_MODE_45);
+		mModeChooser.addOption("Three Note 4/5 + GP Tracking", DesiredMode.THREE_NOTE_MODE_45);
 		mModeChooser.addOption("TESTPATH!!!", DesiredMode.TEST_PATH_AUTO);
 		mModeChooser.addOption("SHOOT AND DRIVE", DesiredMode.SHOOT_AND_DRIVE);
 		mModeChooser.addOption("Six Note", DesiredMode.SIX_NOTE_MODE);
@@ -72,7 +72,7 @@ public class AutoModeSelector {
 		mModeChooser.addOption("Three Note 5/4", DesiredMode.THREE_NOTE_MODE_54);
 		mModeChooser.addOption("Three Note 5/3", DesiredMode.THREE_NOTE_MODE_53);
 		mModeChooser.addOption("Three Note 4/3", DesiredMode.THREE_NOTE_MODE_43);
-		mModeChooser.addOption("Three Note 3/5 + Limelight", DesiredMode.THREE_NOTE_MODE_35);
+		mModeChooser.addOption("Three Note 3/5 + GP Tracking", DesiredMode.THREE_NOTE_MODE_35);
 		mModeChooser.addOption("Three Note 3/4", DesiredMode.THREE_NOTE_MODE_34);
 		mModeChooser.addOption("Adaptive Six", DesiredMode.ADAPTIVE_SIX_MODE);
 		mModeChooser.addOption("N4 Source Five Mode", DesiredMode.RIGHT_FIVE_MODE_4);
