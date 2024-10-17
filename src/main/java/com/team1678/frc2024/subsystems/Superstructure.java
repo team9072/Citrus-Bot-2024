@@ -5,6 +5,7 @@ import com.team1678.frc2024.FieldLayout;
 import com.team1678.frc2024.Ports;
 import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.RobotState;
+import com.team1678.frc2024.controlboard.ControlBoard;
 import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
 import com.team1678.frc2024.loops.Loop;
@@ -55,6 +56,7 @@ public class Superstructure extends Subsystem {
 	private final AmpRollers mAmpRollers = AmpRollers.getInstance();
 	private final Shooter mShooter = Shooter.getInstance();
 	private final Hood mHood = Hood.getInstance();
+	private final ControlBoard mControlBoard = ControlBoard.getInstance();
 
 	// LEDs
 	private final LEDs mLEDs = LEDs.getInstance();
@@ -523,6 +525,7 @@ public class Superstructure extends Subsystem {
 			new ParallelRequest(
 				new SequentialRequest(
 					breakWait(mFeederBreak, true, 0.0),
+					mControlBoard.rumbleControllers(90.72, 1),
 					mIntakeRollers.stateRequest(IntakeRollers.State.EXHAUST),
 					mIntakeDeploy.clearRequest(),
 					new WaitRequest(0.5),
