@@ -22,7 +22,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 		return mInstance;
 	}
 
-	public static final double kDeployAngle = Constants.isEpsilon ? 15.0 : 6.5;
+	public static final double kDeployAngle = 0; // TODO: Epsilon was 15
 	public static final double kClearAngle = 96.0;
 	public static final double kUnjamAngle = 30.0;
 	public static final double kStowAngle = IntakeDeployConstants.kDeployServoConstants.kHomePosition;
@@ -34,7 +34,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 
 	public IntakeDeploy(final ServoMotorSubsystemConstants constants) {
 		super(constants);
-		mMain.setPosition(homeAwareUnitsToRotations(120.0));
+		mMain.setPosition(homeAwareUnitsToRotations(kStowAngle));
 		enableSoftLimits(false);
 		setSetpointMotionMagic(kStowAngle);
 	}
@@ -79,7 +79,8 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 			if (mHomingDelay.update(
 					Timer.getFPGATimestamp(),
 					Math.abs(getVelocity()) < Constants.IntakeDeployConstants.kHomingVelocityWindow)) {
-				zeroSensors();
+				// The 6.0 represents the slop while homing
+				mMain.setPosition(homeAwareUnitsToRotations(kStowAngle + 6.0));
 				mHasBeenZeroed = true;
 				setSetpointMotionMagic(mConstants.kHomePosition);
 				mHoming = false;
@@ -118,7 +119,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 			@Override
 			public void act() {
 				setSetpointMotionMagic(kDeployAngle);
-				mNeedsToHome = true;
+				//mNeedsToHome = true;
 			}
 
 			@Override

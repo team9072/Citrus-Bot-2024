@@ -7,11 +7,13 @@ import com.team1678.lib.Util;
 import com.team1678.lib.logger.LogUtil;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Translation2d;
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.List;
+import java.util.Optional;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
@@ -28,14 +30,13 @@ public class PhotonVisionDevice extends VisionDevice {
 	private boolean isConnected = false;
 	private double latestTimestamp = 0;
 
+	private final AprilTagFieldLayout tagLayout = AprilTagFields.k2024Crescendo.loadAprilTagLayoutField();
+
 	public PhotonVisionDevice(CameraConstants constants) {
 		m_constants = constants;
 		m_camera = new PhotonCamera(m_constants.cameraName);
 		m_poseEstimator = new PhotonPoseEstimator(
-				AprilTagFields.k2024Crescendo.loadAprilTagLayoutField(),
-				PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR,
-				m_camera,
-				m_constants.robotToCamera);
+				tagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, m_camera, m_constants.robotToCamera);
 	}
 
 	@Override
@@ -55,15 +56,12 @@ public class PhotonVisionDevice extends VisionDevice {
 			Pose2d robotPose2d = Util.to254Pose(fieldToRobot.toPose2d());
 
 			List<PhotonTrackedTarget> targets = estimation.targetsUsed;
-			Pose3d[] tagPoses = (Pose3d[]) targets.stream()
+			Pose3d[] tagPoses = targets.stream()
 					.map((target) -> {
-						Transform3d cameraToTag = target.getBestCameraToTarget();
-						Pose3d fieldToTag = fieldToRobot
-								.transformBy(m_constants.robotToCamera)
-								.transformBy(cameraToTag);
-						return fieldToTag;
+						return tagLayout.getTagPose(target.getFiducialId());
 					})
-					.toArray();
+					.mapMulti(Optional::ifPresent)
+					.toArray(Pose3d[]::new);
 
 			double total_tag_dist = 0.0;
 			double lowest_dist = Double.POSITIVE_INFINITY;
@@ -123,7 +121,7 @@ public class PhotonVisionDevice extends VisionDevice {
 		public final String cameraName;
 		public final Transform3d robotToCamera;
 
-		CameraConstants(String cameraName, Transform3d robotToCamera) {
+		public CameraConstants(String cameraName, Transform3d robotToCamera) {
 			this.cameraName = cameraName;
 			this.robotToCamera = robotToCamera;
 		}
