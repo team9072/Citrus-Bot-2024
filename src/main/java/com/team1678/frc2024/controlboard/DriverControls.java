@@ -36,6 +36,9 @@ public class DriverControls {
 		if (!mClimbMode) {
 			mSuperstructure.setWantClimbMode(false);
 			if (mControlBoard.getEnterClimbModeDriver()) {
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
+
 				mClimbMode = true;
 				top_buttons_clear = false;
 				mSuperstructure.tuckState();
@@ -50,7 +53,11 @@ public class DriverControls {
 			if (mControlBoard.driver.rightTrigger.isBeingPressed()) {
 				mDrive.overrideHeading(true);
 			} else {
-				mDrive.overrideHeading(false);
+				if (mControlBoard.operator.leftTrigger.isBeingPressed()) {
+					mDrive.overrideHeading(true);
+				} else {
+					mDrive.overrideHeading(false);
+				}
 			}
 
 			// Intake
@@ -94,6 +101,15 @@ public class DriverControls {
 				}
 			}
 
+			if (mControlBoard.operator.rightBumper.wasActivated()) {
+				if (mControlBoard.operator.POV270.buttonActive
+						|| IntakeDeploy.getInstance().getSetpoint() < IntakeDeploy.kUnjamAngle) {
+					mSuperstructure.slowContinuousShotState();
+				} else {
+					mSuperstructure.fireState();
+				}
+			}
+
 			if (mControlBoard.driver.POV180.wasActivated()) {
 				mSuperstructure.toggleFerry();
 			}
@@ -130,15 +146,14 @@ public class DriverControls {
 				mSuperstructure.ampUnjam();
 			}
 
-			if (mControlBoard.operator.leftBumper.longPressed()) {
-				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
-			}
-
 			if (mControlBoard.operator.aButton.longPressed()) {
 				System.out.println("Homing Hood!");
 				mHood.setWantHome(true);
 			}
 
+			if (mControlBoard.operator.getLeftBumperPressed()) {
+				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
+			}
 		} else {
 			mSuperstructure.setWantClimbMode(true);
 			if (!top_buttons_clear) {
@@ -151,6 +166,8 @@ public class DriverControls {
 
 			if (mControlBoard.getExitClimbModeDriver()) {
 				mClimbMode = false;
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
 				return;
 			}
 
