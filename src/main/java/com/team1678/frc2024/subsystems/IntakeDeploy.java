@@ -119,7 +119,7 @@ public class IntakeDeploy extends ServoMotorSubsystem {
 			@Override
 			public void act() {
 				setSetpointMotionMagic(kDeployAngle);
-				mNeedsToHome = true;
+				//mNeedsToHome = true;
 			}
 
 			@Override
