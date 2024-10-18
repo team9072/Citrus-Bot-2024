@@ -416,7 +416,7 @@ public class Constants {
 			config.CurrentLimits.SupplyTimeThreshold = 0.5;
 
 			config.CurrentLimits.StatorCurrentLimitEnable = true;
-			config.CurrentLimits.StatorCurrentLimit = 80;
+			config.CurrentLimits.StatorCurrentLimit = 130;
 
 			config.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			return config;
