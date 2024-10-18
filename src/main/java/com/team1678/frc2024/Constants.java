@@ -525,7 +525,7 @@ public class Constants {
 	 */
 	public static final class PhotonVisionConstants {
 		// Normal (but is inverted later because 3d rotations are silly)
-		public static double kCameraPitch = -15;
+		public static double kCameraPitch = 11.25;
 		// Cameras are upside down
 		public static double kCameraRoll = 180;
 		// Mirrored per camera, cameras are also backwards, so 180 degrees are added later
