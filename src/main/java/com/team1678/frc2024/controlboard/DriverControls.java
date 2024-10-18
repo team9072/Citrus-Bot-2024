@@ -50,14 +50,10 @@ public class DriverControls {
 				return;
 			}
 
-			if (mControlBoard.driver.rightTrigger.isBeingPressed()) {
+			if (mControlBoard.operator.leftTrigger.isBeingPressed()) {
 				mDrive.overrideHeading(true);
 			} else {
-				if (mControlBoard.operator.leftTrigger.isBeingPressed()) {
-					mDrive.overrideHeading(true);
-				} else {
-					mDrive.overrideHeading(false);
-				}
+				mDrive.overrideHeading(false);
 			}
 
 			// Intake
@@ -85,13 +81,6 @@ public class DriverControls {
 				mSuperstructure.ampScoreTransition();
 			}
 
-			// Shooter
-			if (mControlBoard.driver.aButton.wasActivated()) {
-				mSuperstructure.setWantPrep(true);
-			} else if (mControlBoard.driver.xButton.wasActivated()) {
-				mSuperstructure.setWantPrep(false);
-			}
-
 			if (mControlBoard.driver.yButton.wasActivated()) {
 				if (mControlBoard.driver.POV270.buttonActive
 						|| IntakeDeploy.getInstance().getSetpoint() < IntakeDeploy.kUnjamAngle) {
@@ -101,13 +90,11 @@ public class DriverControls {
 				}
 			}
 
+			// Shooter
 			if (mControlBoard.operator.rightBumper.wasActivated()) {
-				if (mControlBoard.operator.POV270.buttonActive
-						|| IntakeDeploy.getInstance().getSetpoint() < IntakeDeploy.kUnjamAngle) {
-					mSuperstructure.slowContinuousShotState();
-				} else {
-					mSuperstructure.fireState();
-				}
+				mSuperstructure.setWantPrep(true);
+			}  else if (mControlBoard.operator.xButton.wasActivated()) {
+				mSuperstructure.setWantPrep(false);
 			}
 
 			if (mControlBoard.driver.POV180.wasActivated()) {
@@ -121,9 +108,9 @@ public class DriverControls {
 			}
 
 			if (mControlBoard.operator.POV0.isBeingPressed()) {
-				mHood.setWantJog(0.5);
+				mHood.setWantJog(1);
 			} else if (mControlBoard.operator.POV180.isBeingPressed()) {
-				mHood.setWantJog(-0.5);
+				mHood.setWantJog(-1);
 			}
 
 			if (mControlBoard.driver.POV90.wasActivated()) {
