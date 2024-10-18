@@ -243,7 +243,7 @@ public class Superstructure extends Subsystem {
 			target_drive_heading = Rotation2d.fromDegrees(shooting_params[3]);
 
 			if (!PREP || mAmpBreak.get() || mDistanceToTarget > 10.4) {
-				shooter_setpoint = 120.0;
+				shooter_setpoint = 160.0;
 				hood_setpoint = 50.0;
 			}
 
