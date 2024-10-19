@@ -2,7 +2,7 @@ package com.team1678.frc2024.shooting;
 
 public class SpeakerRegression {
 	// spotless:off
-        public static double[][] kHoodManualAngle = {
+        public static double[][] kOldHoodManualAngle = {
 
                         // @x --> distance from target (in meters)
                         // @y --> hood angle (in degrees)
@@ -29,6 +29,33 @@ public class SpeakerRegression {
                         { 7.5, 17.5 },
         };
 
+        // New for 9072
+        public static double[][] kHoodManualAngle = {
+                        // @x --> distance from target (in meters)
+                        // @y --> hood angle (in degrees)
+                        { 1.17, 55.0 },
+                        { 1.50, 49.0 },
+                        { 2.0, 42.0 },
+                        { 2.25, 40.5 },
+                        { 2.5, 38.2 },
+                        { 2.75, 36.0 },
+                        { 3.0, 34.0 },
+                        { 3.25, 32.25 },
+                        { 3.5, 31.3 },
+                        { 3.75, 30.0 },
+                        { 4.0, 29.0 },
+                        { 4.25, 28.0 },
+                        { 4.5, 27.3 },
+                        { 4.75, 27.2 },
+                        { 5.0, 26.0 },
+                        { 5.5, 25.7 },
+                        // TODO: Untuned after 5.5
+                        { 6.0, 23.0 },
+                        { 6.5, 20.0 },
+                        { 7.0, 19.0 },
+                        { 7.5, 17.5 },
+        };
+
         public static double[][] kFlywheelManualRPM = {
                         // Need to change values
 
@@ -48,7 +75,7 @@ public class SpeakerRegression {
                         { 7.5, 8000 },
         };
 
-        public static double[][] kShooterCurveOffset = {
+        public static double[][] kOldShooterCurveOffset = {
                         // @x --> distance from target (in meters)
                         // @y --> angle to add to robot heading (degrees)
                         { 2.1, -5.0 },
@@ -56,6 +83,18 @@ public class SpeakerRegression {
                         { 4.0, -6.0 },
                         { 5.0, -4.0 },
                         { 6.0, -4.0 },
+        };
+
+        // New for 9072
+        public static double[][] kShooterCurveOffset = {
+                // @x --> distance from target (in meters)
+                // @y --> angle to add to robot heading (degrees)
+                {1.3, 0},
+                {2.6, 0},
+                {3.5, 0},
+                {5.0, 1},
+                {6.0, 3}
+
         };
 
         public static double[][] kSkewOffset = {

@@ -76,8 +76,8 @@ public class Superstructure extends Subsystem {
 
 	// Manual param tuning
 	public final boolean kUseSmartdash = false;
-	public TunableNumber kCurveTuner = new TunableNumber("FiringParams/ManualCurveTune", 0.0, true);
-	public TunableNumber kSkewTuner = new TunableNumber("FiringParams/ManualSkewTune", 0.0, true);
+	//public TunableNumber kCurveTuner = new TunableNumber("FiringParams/ManualCurveTune", 0.0, true);
+	//public TunableNumber kSkewTuner = new TunableNumber("FiringParams/ManualSkewTune", 0.0, true);
 	public TunableNumber mHoodTuner = new TunableNumber("FiringParams/ManualHoodTune", 0.0, true);
 	public TunableNumber mRPMTuner = new TunableNumber("FiringParams/ManualRPMTune", 0.0, true);
 
