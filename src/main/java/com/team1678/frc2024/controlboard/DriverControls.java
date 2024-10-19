@@ -10,8 +10,6 @@ import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Superstructure;
 import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
-import com.team254.lib.geometry.Pose2d;
-import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
@@ -120,9 +118,7 @@ public class DriverControls {
 				Translation2d offset = new Translation2d(Units.inchesToMeters(35.5 + (32 / 2.0)), 0.0);
 				Translation2d pos = FieldLayout.handleAllianceFlip(speaker.plus(offset), Robot.is_red_alliance);
 
-				RobotState.getInstance().reset(Timer.getFPGATimestamp(), new Pose2d(pos, new Rotation2d()));
-				RobotState.getInstance().resetKalman();
-				Drive.getInstance().getWheelTracker().resetPose(new Pose2d(pos, new Rotation2d()));
+				RobotState.getInstance().resetPoseTo(Timer.getFPGATimestamp(), pos);
 			}
 
 			if (mControlBoard.operator.rightTrigger.longPressed()) {

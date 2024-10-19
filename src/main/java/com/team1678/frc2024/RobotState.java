@@ -1,5 +1,6 @@
 package com.team1678.frc2024;
 
+import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.vision.VisionPoseAcceptor;
 import com.team254.lib.geometry.Pose2d;
 import com.team254.lib.geometry.Rotation2d;
@@ -70,6 +71,28 @@ public class RobotState {
 		vehicle_velocity_measured_filtered = new MovingAverageTwist2d(25);
 		mLatestVisionUpdate = Optional.empty();
 		mPoseAcceptor = new VisionPoseAcceptor();
+	}
+
+	/**
+	 * Clears pose history and sets odometry pose as truth.
+	 *
+	 * @param now                     Current timestamp.
+	 * @param wantedPose Pose to reset to.
+	 */
+	public synchronized void resetPoseTo(double now, Translation2d wantedPose) {
+		Drive.getInstance().getWheelTracker().resetPose(Pose2d.identity());
+		odometry_to_vehicle = new InterpolatingTreeMap<>(kObservationBufferSize);	
+		odometry_to_vehicle.put(new InterpolatingDouble(now), Pose2d.identity());
+
+		field_to_odometry = new InterpolatingTreeMap<>(kObservationBufferSize);
+		field_to_odometry.put(new InterpolatingDouble(now), wantedPose);
+
+		vehicle_velocity_measured = Twist2d.identity();
+		vehicle_velocity_predicted = Twist2d.identity();
+		vehicle_velocity_measured_filtered = new MovingAverageTwist2d(25);
+		mLatestVisionUpdate = Optional.empty();
+		mPoseAcceptor = new VisionPoseAcceptor();
+		resetKalman();
 	}
 
 	/**
