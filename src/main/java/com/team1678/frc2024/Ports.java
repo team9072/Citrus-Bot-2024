@@ -15,7 +15,7 @@ public class Ports {
 
 	/* DRIVETRAIN CAN DEVICE IDS */
 	public static final CanDeviceId FL_DRIVE = new CanDeviceId(2, "canivore1");
-	public static final CanDeviceId FL_ROTATION = new CanDeviceId(2, "canivore1");
+	public static final CanDeviceId FL_ROTATION = new CanDeviceId(3, "canivore1");
 	public static final CanDeviceId FL_CANCODER = new CanDeviceId(4, "canivore1");
 
 	public static final CanDeviceId FR_DRIVE = new CanDeviceId(5, "canivore1");
@@ -56,9 +56,9 @@ public class Ports {
 	public static final CanDeviceId LEDS = new CanDeviceId(2, "rio");
 
 	/* BEAM BREAK DIO CHANNELS*/
-	public static final int SERIALIZER_BREAK = Constants.isEpsilon ? 7 : 8;
-	public static final int FEEDER_BREAK = Constants.isEpsilon ? 8 : 7;
-	public static final int AMP_BREAK = 9; 
+	public static final int SERIALIZER_BREAK = 1;
+	public static final int FEEDER_BREAK = 2;
+	public static final int AMP_BREAK = 0; 
 
 	/* LINEAR SERVO PWM CHANNELS */
 	public static final int CLIMBER_LINEAR_ACTUATOR = 9;

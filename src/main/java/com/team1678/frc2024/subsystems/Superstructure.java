@@ -5,6 +5,7 @@ import com.team1678.frc2024.FieldLayout;
 import com.team1678.frc2024.Ports;
 import com.team1678.frc2024.Robot;
 import com.team1678.frc2024.RobotState;
+import com.team1678.frc2024.controlboard.ControlBoard;
 import com.team1678.frc2024.led.TimedLEDState;
 import com.team1678.frc2024.loops.ILooper;
 import com.team1678.frc2024.loops.Loop;
@@ -55,6 +56,7 @@ public class Superstructure extends Subsystem {
 	private final AmpRollers mAmpRollers = AmpRollers.getInstance();
 	private final Shooter mShooter = Shooter.getInstance();
 	private final Hood mHood = Hood.getInstance();
+	private final ControlBoard mControlBoard = ControlBoard.getInstance();
 
 	// LEDs
 	private final LEDs mLEDs = LEDs.getInstance();
@@ -74,8 +76,8 @@ public class Superstructure extends Subsystem {
 
 	// Manual param tuning
 	public final boolean kUseSmartdash = false;
-	public TunableNumber kCurveTuner = new TunableNumber("FiringParams/ManualCurveTune", 0.0, true);
-	public TunableNumber kSkewTuner = new TunableNumber("FiringParams/ManualSkewTune", 0.0, true);
+	//public TunableNumber kCurveTuner = new TunableNumber("FiringParams/ManualCurveTune", 0.0, true);
+	//public TunableNumber kSkewTuner = new TunableNumber("FiringParams/ManualSkewTune", 0.0, true);
 	public TunableNumber mHoodTuner = new TunableNumber("FiringParams/ManualHoodTune", 0.0, true);
 	public TunableNumber mRPMTuner = new TunableNumber("FiringParams/ManualRPMTune", 0.0, true);
 
@@ -241,7 +243,7 @@ public class Superstructure extends Subsystem {
 			target_drive_heading = Rotation2d.fromDegrees(shooting_params[3]);
 
 			if (!PREP || mAmpBreak.get() || mDistanceToTarget > 10.4) {
-				shooter_setpoint = 120.0;
+				shooter_setpoint = 160.0;
 				hood_setpoint = 50.0;
 			}
 
@@ -523,6 +525,7 @@ public class Superstructure extends Subsystem {
 			new ParallelRequest(
 				new SequentialRequest(
 					breakWait(mFeederBreak, true, 0.0),
+					mControlBoard.rumbleControllers(90.72, 1),
 					mIntakeRollers.stateRequest(IntakeRollers.State.EXHAUST),
 					mIntakeDeploy.clearRequest(),
 					new WaitRequest(0.5),

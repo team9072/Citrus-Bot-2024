@@ -1,5 +1,8 @@
 package com.team1678.frc2024.controlboard;
 
+import com.team1678.frc2024.FieldLayout;
+import com.team1678.frc2024.Robot;
+import com.team1678.frc2024.RobotState;
 import com.team1678.frc2024.subsystems.Climber;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.frc2024.subsystems.Hood;
@@ -7,6 +10,9 @@ import com.team1678.frc2024.subsystems.IntakeDeploy;
 import com.team1678.frc2024.subsystems.LEDs;
 import com.team1678.frc2024.subsystems.Superstructure;
 import com.team1678.frc2024.subsystems.vision.VisionDeviceManager;
+import com.team254.lib.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriverControls {
@@ -28,6 +34,9 @@ public class DriverControls {
 		if (!mClimbMode) {
 			mSuperstructure.setWantClimbMode(false);
 			if (mControlBoard.getEnterClimbModeDriver()) {
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
+
 				mClimbMode = true;
 				top_buttons_clear = false;
 				mSuperstructure.tuckState();
@@ -39,7 +48,7 @@ public class DriverControls {
 				return;
 			}
 
-			if (mControlBoard.driver.rightTrigger.isBeingPressed()) {
+			if (mControlBoard.operator.leftTrigger.isBeingPressed()) {
 				mDrive.overrideHeading(true);
 			} else {
 				mDrive.overrideHeading(false);
@@ -70,13 +79,6 @@ public class DriverControls {
 				mSuperstructure.ampScoreTransition();
 			}
 
-			// Shooter
-			if (mControlBoard.driver.aButton.wasActivated()) {
-				mSuperstructure.setWantPrep(true);
-			} else if (mControlBoard.driver.xButton.wasActivated()) {
-				mSuperstructure.setWantPrep(false);
-			}
-
 			if (mControlBoard.driver.yButton.wasActivated()) {
 				if (mControlBoard.driver.POV270.buttonActive
 						|| IntakeDeploy.getInstance().getSetpoint() < IntakeDeploy.kUnjamAngle) {
@@ -86,7 +88,14 @@ public class DriverControls {
 				}
 			}
 
-			if (mControlBoard.driver.POV180.wasActivated()) {
+			// Shooter
+			if (mControlBoard.operator.rightBumper.wasActivated()) {
+				mSuperstructure.setWantPrep(true);
+			}  else if (mControlBoard.operator.xButton.wasActivated()) {
+				mSuperstructure.setWantPrep(false);
+			}
+
+			if (mControlBoard.operator.leftBumper.wasActivated()) {
 				mSuperstructure.toggleFerry();
 			}
 
@@ -97,9 +106,19 @@ public class DriverControls {
 			}
 
 			if (mControlBoard.operator.POV0.isBeingPressed()) {
-				mHood.setWantJog(0.5);
+				mHood.setWantJog(1);
 			} else if (mControlBoard.operator.POV180.isBeingPressed()) {
-				mHood.setWantJog(-0.5);
+				mHood.setWantJog(-1);
+			}
+
+			if (mControlBoard.driver.POV90.wasActivated()) {
+				Translation2d speaker = new Translation2d(
+						0.0, FieldLayout.kSpeakerCenter.getTranslation().y());
+				// Distance from speaker face to subwoofer, robot's length / 2
+				Translation2d offset = new Translation2d(Units.inchesToMeters(35.5 + (32 / 2.0)), 0.0);
+				Translation2d pos = FieldLayout.handleAllianceFlip(speaker.plus(offset), Robot.is_red_alliance);
+
+				RobotState.getInstance().resetPoseTo(Timer.getFPGATimestamp(), pos);
 			}
 
 			if (mControlBoard.operator.rightTrigger.longPressed()) {
@@ -110,15 +129,14 @@ public class DriverControls {
 				mSuperstructure.ampUnjam();
 			}
 
-			if (mControlBoard.operator.leftBumper.longPressed()) {
-				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
-			}
-
 			if (mControlBoard.operator.aButton.longPressed()) {
 				System.out.println("Homing Hood!");
 				mHood.setWantHome(true);
 			}
 
+			if (mControlBoard.operator.getLeftBumperPressed()) {
+				VisionDeviceManager.setDisableVision(!VisionDeviceManager.visionDisabled());
+			}
 		} else {
 			mSuperstructure.setWantClimbMode(true);
 			if (!top_buttons_clear) {
@@ -131,6 +149,8 @@ public class DriverControls {
 
 			if (mControlBoard.getExitClimbModeDriver()) {
 				mClimbMode = false;
+				// Vibrate both controllers so the driver is sure
+				mControlBoard.rumbleControllers(90.72, 1).act();
 				return;
 			}
 
@@ -192,7 +212,7 @@ public class DriverControls {
 		// Intake
 		if (mControlBoard.driver.rightBumper.wasActivated()) {
 			mSuperstructure.intakeToHoldTransition();
-		} else if (mControlBoard.driver.leftBumper.wasActivated() || mControlBoard.operator.leftBumper.wasActivated()) {
+		} else if (mControlBoard.driver.leftBumper.wasActivated()) {
 			mSuperstructure.tuckState();
 		}
 
@@ -261,8 +281,6 @@ public class DriverControls {
 
 		if (mControlBoard.operator.rightBumper.wasActivated()) {
 			mSuperstructure.elevatorFullExtendTransition();
-		} else if (mControlBoard.operator.leftBumper.wasActivated()) {
-			mSuperstructure.idleState();
 		}
 
 		if (mControlBoard.operator.leftCenterClick.wasActivated()) {

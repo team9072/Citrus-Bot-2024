@@ -57,6 +57,11 @@ public class Pose2d implements IPose2d<Pose2d> {
         return new Pose2d(new Translation2d(), rotation);
     }
 
+    public edu.wpi.first.math.geometry.Pose2d getNativePose() {
+        // edu.wpi.first.math.geometry.Transform2d transform = new edu.wpi.first.math.geometry.Transform2d(translation_.x 
+        return new edu.wpi.first.math.geometry.Pose2d(translation_.x(), translation_.y(), new edu.wpi.first.math.geometry.Rotation2d(rotation_.getRadians()));
+    }
+
     /**
      * Obtain a new Pose2d from a (constant curvature) velocity. See:
      * https://github.com/strasdat/Sophus/blob/master/sophus/se2.hpp

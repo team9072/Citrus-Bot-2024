@@ -85,17 +85,19 @@ public class ShootingUtil {
 
 	// interpolates distance to target for shooter setpoint along regression
 	private static double getShooterSetpointForShot(double range) {
-		// if (Superstructure.getInstance().kUseSmartdash) {
-		//     return Superstructure.getInstance().mRPMTuner.get();
-		// }
+		if (Superstructure.getInstance().kUseSmartdash) {
+			double setpoint = Superstructure.getInstance().mRPMTuner.get();
+			if (setpoint != 0) return setpoint;
+		}
 		return RegressionMaps.kFlywheelAutoAimMap.getInterpolated(new InterpolatingDouble(range)).value;
 	}
 
 	// interpolates distance to target for hood setpoint along regression
 	private static double getHoodSetpointForShot(double range) {
-		// if (Superstructure.getInstance().kUseSmartdash) {
-		//     return Superstructure.getInstance().mHoodTuner.get();
-		// }
+		if (Superstructure.getInstance().kUseSmartdash) {
+			double setpoint = Superstructure.getInstance().mHoodTuner.get();
+			if (setpoint != 0) return setpoint;
+		}
 		return RegressionMaps.kHoodAutoAimMap.getInterpolated(new InterpolatingDouble(range)).value;
 	}
 
@@ -109,9 +111,9 @@ public class ShootingUtil {
 
 	// interpolates distance to target for hood setpoint along regression
 	private static double getSkewCompensationFromRegression(double y_offset) {
-		if (Superstructure.getInstance().kUseSmartdash) {
-			return Superstructure.getInstance().kSkewTuner.get();
-		}
+		// if (Superstructure.getInstance().kUseSmartdash) {
+		// 	return Superstructure.getInstance().kSkewTuner.get();
+		// }
 		double offset = RegressionMaps.kSkewOffsetMap.getInterpolated(new InterpolatingDouble(y_offset)).value;
 		return Robot.is_red_alliance ? offset : offset;
 	}

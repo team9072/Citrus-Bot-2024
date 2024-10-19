@@ -21,7 +21,7 @@ public class Serializer extends Subsystem {
 
 	public enum State {
 		IDLE(0.0),
-		INTAKE(Constants.isEpsilon ? 5.0 : 10.0),
+		INTAKE(10.0), // TODO: Epsilon was 5.0
 		SLOW_FEED(3.0),
 		SLOW_EXHAUST(-3.0),
 		EXHAUST(-10.0);

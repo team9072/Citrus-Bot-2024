@@ -11,17 +11,20 @@ import com.team1678.frc2024.subsystems.Drive.KinematicLimits;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.ServoMotorSubsystemConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystem.TalonFXConstants;
 import com.team1678.frc2024.subsystems.servo.ServoMotorSubsystemWithCancoder.AbsoluteEncoderConstants;
+import com.team1678.frc2024.subsystems.vision.PhotonVisionDevice.CameraConstants;
 import com.team1678.lib.Conversions;
 import com.team1678.lib.swerve.SwerveDriveKinematics;
 import com.team1678.lib.swerve.SwerveModule.SwerveModuleConstants;
 import com.team254.lib.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import java.util.function.BooleanSupplier;
 
 public class Constants {
 
-	public static boolean isComp;
-	public static boolean isEpsilon;
+	public static boolean isComp = true;
 
 	public static BooleanSupplier isCompSupplier() {
 		return () -> isComp;
@@ -56,7 +59,7 @@ public class Constants {
 		public static final double wheelDiameter = Units.inchesToMeters(4.00);
 		public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-		public static final double driveGearRatio = Constants.isEpsilon ? 5.82 : 5.82;
+		public static final double driveGearRatio = 5.82;
 		public static final double angleGearRatio = (150.0 / 7.0);
 
 		public static final Translation2d[] swerveModuleLocations = {
@@ -123,53 +126,41 @@ public class Constants {
 		/*** MODULE SPECIFIC CONSTANTS ***/
 		/* Front Left Module - Module 0 */
 		public static final class Mod0 {
-			public static final double compAngleOffset = 99.5;
-			public static final double epsilonAngleOffset = 0.87;
+			public static final double compAngleOffset = (-0.168701 * 360) - 180;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.FL_DRIVE.getDeviceNumber(),
-						Ports.FL_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						Ports.FL_DRIVE.getDeviceNumber(), Ports.FL_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
 		/* Front Right Module - Module 1 */
 		public static final class Mod1 {
-			public static final double compAngleOffset = 254.880;
-			public static final double epsilonAngleOffset = 67.68;
+			public static final double compAngleOffset = (0.952148 * 360);
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.FR_DRIVE.getDeviceNumber(),
-						Ports.FR_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						Ports.FR_DRIVE.getDeviceNumber(), Ports.FR_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
 		/* Back Left Module - Module 2 */
 		public static final class Mod2 {
-			public static final double compAngleOffset = 180.0;
-			public static final double epsilonAngleOffset = 46.8;
+			public static final double compAngleOffset = (0.141357 * 360) - 180;
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.BL_DRIVE.getDeviceNumber(),
-						Ports.BL_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						Ports.BL_DRIVE.getDeviceNumber(), Ports.BL_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
 		/* Back Right Module - Module 3 */
 		public static final class Mod3 {
-			public static final double compAngleOffset = 181.5822;
-			public static final double epsilonAngleOffset = 61.56;
+			public static final double compAngleOffset = (-0.074463 * 360);
 
 			public static SwerveModuleConstants SwerveModuleConstants() {
 				return new SwerveModuleConstants(
-						Ports.BR_DRIVE.getDeviceNumber(),
-						Ports.BR_ROTATION.getDeviceNumber(),
-						isEpsilon ? epsilonAngleOffset : compAngleOffset);
+						Ports.BR_DRIVE.getDeviceNumber(), Ports.BR_ROTATION.getDeviceNumber(), compAngleOffset);
 			}
 		}
 
@@ -262,8 +253,9 @@ public class Constants {
 			kDeployServoConstants.kMainConstants.id = Ports.INTAKE_PIVOT;
 			kDeployServoConstants.kMainConstants.counterClockwisePositive = false;
 
-			kDeployServoConstants.kHomePosition = 128.1; // degrees
-			kDeployServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * (45.0 / 1.0);
+			kDeployServoConstants.kHomePosition = 126.7; // degrees
+			kDeployServoConstants.kRotationsPerUnitDistance =
+					(1.0 / 360.0) * ((4.0 * 4.0 * (48.0 / 28.0) * (18.0 / 12.0)) / 1.0);
 
 			kDeployServoConstants.kMaxUnitsLimit = 128.1;
 			kDeployServoConstants.kMinUnitsLimit = 0.0;
@@ -281,12 +273,12 @@ public class Constants {
 			kDeployServoConstants.kMaxForwardOutput = 12.0;
 			kDeployServoConstants.kMaxReverseOutput = -12.0;
 
-			kDeployServoConstants.kEnableSupplyCurrentLimit = true;
+			kDeployServoConstants.kEnableSupplyCurrentLimit = false;
 			kDeployServoConstants.kSupplyCurrentLimit = 40; // amps
 			kDeployServoConstants.kSupplyCurrentThreshold = 40; // amps
 			kDeployServoConstants.kSupplyCurrentTimeout = 0.01; // seconds
 
-			kDeployServoConstants.kEnableStatorCurrentLimit = true;
+			kDeployServoConstants.kEnableStatorCurrentLimit = false;
 			kDeployServoConstants.kStatorCurrentLimit = 80; // amps
 
 			kDeployServoConstants.kNeutralMode = NeutralModeValue.Brake;
@@ -410,12 +402,8 @@ public class Constants {
 
 	public static final class ShooterConstants {
 		public static final double kCompGearRatio = 1.6;
-		public static final double kEpsilonTopGearRatio = 1.6;
-		public static final double kEpsilonBottomGearRatio = 1.6;
-		public static final double kTopFlywheelVelocityConversion =
-				(60.0) * (isEpsilon ? kEpsilonTopGearRatio : kCompGearRatio) / (1.0);
-		public static final double kBottomFlywheelVelocityConversion =
-				(60.0) * (isEpsilon ? kEpsilonBottomGearRatio : kCompGearRatio) / (1.0);
+		public static final double kTopFlywheelVelocityConversion = (60.0) * (kCompGearRatio) / (1.0);
+		public static final double kBottomFlywheelVelocityConversion = (60.0) * (kCompGearRatio) / (1.0);
 		public static final double kFlywheelTolerance = 1000;
 
 		public static TalonFXConfiguration ShooterFXConfig() {
@@ -432,7 +420,7 @@ public class Constants {
 			config.CurrentLimits.SupplyTimeThreshold = 0.5;
 
 			config.CurrentLimits.StatorCurrentLimitEnable = true;
-			config.CurrentLimits.StatorCurrentLimit = 80;
+			config.CurrentLimits.StatorCurrentLimit = 130;
 
 			config.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			return config;
@@ -459,7 +447,7 @@ public class Constants {
 
 			kHoodServoConstants.kHomePosition = 15.0; // Degrees
 			kHoodServoConstants.kRotationsPerUnitDistance = (1.0 / 360.0) * (7.16 / 1.0); // Cancoder to unit distance
-			kHoodServoConstants.kKp = isEpsilon ? 100 : 200;
+			kHoodServoConstants.kKp = 100; // 200
 			kHoodServoConstants.kKi = 0;
 			kHoodServoConstants.kKd = 0.0;
 			kHoodServoConstants.kKg = 0.7;
@@ -489,7 +477,7 @@ public class Constants {
 			kHoodEncoderConstants.encoder_type = FeedbackSensorSourceValue.FusedCANcoder;
 			kHoodEncoderConstants.remote_encoder_port = Ports.HOOD_CANCODER;
 			kHoodEncoderConstants.rotor_rotations_per_output = 314.0;
-			kHoodEncoderConstants.remote_encoder_offset = isEpsilon ? 0.187 : -0.2861;
+			kHoodEncoderConstants.remote_encoder_offset = 0.415;
 		}
 	}
 
@@ -517,7 +505,7 @@ public class Constants {
 			kClimberServoConstants.kCruiseVelocity = 0.5; // inches of string length
 			kClimberServoConstants.kAcceleration = 4.0;
 
-			kClimberServoConstants.kMaxUnitsLimit = 0.429 + Conversions.inchesToMeters(3.0);
+			kClimberServoConstants.kMaxUnitsLimit = 0.418 + Conversions.inchesToMeters(3.0);
 			kClimberServoConstants.kMinUnitsLimit = 0.0;
 
 			kClimberServoConstants.kEnableSupplyCurrentLimit = true;
@@ -530,6 +518,44 @@ public class Constants {
 
 			kClimberServoConstants.kNeutralMode = NeutralModeValue.Brake;
 		}
+	}
+	/**
+	 * For standard deviations:
+	 * Lower = trust more, higher = trust less
+	 */
+	public static final class PhotonVisionConstants {
+		// Normal (but is inverted later because 3d rotations are silly)
+		public static double kCameraPitch = 11.25;
+		// Cameras are upside down
+		public static double kCameraRoll = 180;
+		// Mirrored per camera, cameras are also backwards, so 180 degrees are added later
+		public static double kRelativeCameraYaw = 19;
+
+		public static CameraConstants kPortCameraSettings = new CameraConstants(
+				"Port (BW1)",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097), // Negative shifts up on field
+								Conversions.inchesToMeters(6.25), // Negative shifts left on field
+								Conversions.inchesToMeters(24.0)),
+						// Invert pitch beacuse yaw and roll are 180 degrees
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 + kRelativeCameraYaw))));
+
+		public static CameraConstants kStarboardCameraSettings = new CameraConstants(
+				"Starboard (BW3)",
+				new Transform3d(
+						new Translation3d(
+								Conversions.inchesToMeters(4.097),
+								Conversions.inchesToMeters(-7.75),
+								Conversions.inchesToMeters(24.0)),
+						// See comment on port camera Rotation3d
+						new Rotation3d(
+								Units.degreesToRadians(kCameraRoll),
+								Units.degreesToRadians(-kCameraPitch),
+								Units.degreesToRadians(180 - kRelativeCameraYaw))));
 	}
 
 	public static final class LinearServoConstants {

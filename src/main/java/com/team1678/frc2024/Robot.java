@@ -43,6 +43,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.List;
 import java.util.Optional;
@@ -87,15 +88,14 @@ public class Robot extends TimedRobot {
 
 	double disable_enter_time = 0.0;
 
-	static {
-		if (Robot.isReal()) {
-			serial = System.getenv("serialnum");
-		} else {
-			serial = "";
-		}
-		Constants.isComp = serial.startsWith(Constants.kCompSerial);
-		Constants.isEpsilon = serial.startsWith(Constants.kEpsilonSerial);
-	}
+	// static {
+	// 	if (Robot.isReal()) {
+	// 		serial = System.getenv("serialnum");
+	// 	} else {
+	// 		serial = "";
+	// 	}
+	// 	Constants.isComp = serial.startsWith(Constants.kCompSerial);
+	// }
 
 	public Robot() {
 		CrashTracker.logRobotConstruction();
@@ -121,9 +121,8 @@ public class Robot extends TimedRobot {
 			LiveWindow.disableAllTelemetry();
 
 			SmartDashboard.putBoolean("Is Comp", Constants.isComp);
-			SmartDashboard.putBoolean("Is Epsilon", Constants.isEpsilon);
 
-			if (!Constants.isComp && !Constants.isEpsilon) {
+			if (!Constants.isComp) {
 				SmartDashboard.putString("Comp Serial", Constants.kCompSerial);
 				SmartDashboard.putString("Epsilon Serial", Constants.kEpsilonSerial);
 				SmartDashboard.putString("Serial Number", serial);
@@ -178,10 +177,19 @@ public class Robot extends TimedRobot {
 		}
 	}
 
+	private Field2d mField = null;
+
 	@Override
 	public void robotPeriodic() {
 		mEnabledLooper.outputToSmartDashboard();
 		mSubsystemManager.outputLoopTimes();
+
+		if (mField == null) {
+			mField = new Field2d();
+			SmartDashboard.putData("mField", mField);
+		} else {
+			mField.setRobotPose(mDrive.getPose().getNativePose());
+		}
 	}
 
 	@Override

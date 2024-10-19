@@ -3,6 +3,7 @@ package com.team1678.frc2024.controlboard;
 import com.team1678.frc2024.Constants;
 import com.team1678.frc2024.subsystems.Drive;
 import com.team1678.lib.Util;
+import com.team1678.lib.requests.Request;
 import com.team254.lib.geometry.Rotation2d;
 import com.team254.lib.geometry.Translation2d;
 import edu.wpi.first.wpilibj.XboxController.Axis;
@@ -113,5 +114,21 @@ public class ControlBoard {
 
 	public boolean getExitClimbModeOperator() {
 		return operator.getBackButton() && operator.getStartButton();
+	}
+
+	// Rumbles both controllers as a Request, useful for sequences.
+	public Request rumbleControllers(double rumblesPerSecond, double numberOfSeconds) {
+		return new Request() {
+			@Override
+			public void act() {
+				mInstance.driver.rumble(rumblesPerSecond, numberOfSeconds);
+				mInstance.operator.rumble(rumblesPerSecond, numberOfSeconds);
+			}
+
+			@Override
+			public boolean isFinished() {
+				return true;
+			}
+		};
 	}
 }
