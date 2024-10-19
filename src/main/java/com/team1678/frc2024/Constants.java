@@ -535,8 +535,8 @@ public class Constants {
 				"Port (BW1)",
 				new Transform3d(
 						new Translation3d(
-								Conversions.inchesToMeters(4.097),
-								Conversions.inchesToMeters(6.25),
+								Conversions.inchesToMeters(4.097), // Negative shifts up on field
+								Conversions.inchesToMeters(6.25), // Negative shifts left on field
 								Conversions.inchesToMeters(24.0)),
 						// Invert pitch beacuse yaw and roll are 180 degrees
 						new Rotation3d(
