@@ -95,7 +95,7 @@ public class DriverControls {
 				mSuperstructure.setWantPrep(false);
 			}
 
-			if (mControlBoard.driver.POV180.wasActivated()) {
+			if (mControlBoard.operator.leftBumper.wasActivated()) {
 				mSuperstructure.toggleFerry();
 			}
 
