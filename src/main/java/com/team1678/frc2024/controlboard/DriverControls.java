@@ -212,7 +212,7 @@ public class DriverControls {
 		// Intake
 		if (mControlBoard.driver.rightBumper.wasActivated()) {
 			mSuperstructure.intakeToHoldTransition();
-		} else if (mControlBoard.driver.leftBumper.wasActivated() || mControlBoard.operator.leftBumper.wasActivated()) {
+		} else if (mControlBoard.driver.leftBumper.wasActivated()) {
 			mSuperstructure.tuckState();
 		}
 
@@ -281,8 +281,6 @@ public class DriverControls {
 
 		if (mControlBoard.operator.rightBumper.wasActivated()) {
 			mSuperstructure.elevatorFullExtendTransition();
-		} else if (mControlBoard.operator.leftBumper.wasActivated()) {
-			mSuperstructure.idleState();
 		}
 
 		if (mControlBoard.operator.leftCenterClick.wasActivated()) {
